@@ -60,7 +60,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
               child: FlatButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context){
-                    return ResultScreen(crop: widget.crop);
+                    return ResultScreen(crop: widget.crop, waterAnalysis: wateranalysis);
                   }
                 ));
               },

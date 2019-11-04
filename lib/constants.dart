@@ -5,7 +5,7 @@ List<String> images = [
   'Basil',
   'Pepper',
   'Strawberry',
-  'Watermelon',
+  'Melon',
   'Roses',
   'Herbs',
   'Spinach'
@@ -47,3 +47,11 @@ Map<String, List<double>> suggestedNutrients = {
   'Herbs': [140, 31, 210, 98, 30, 60],
   'Spinach': [195, 40, 280, 134, 40, 75],
 };
+List<String> chemLabels = [
+  'Nitrogen.png',
+  'Phosphorus.png',
+  'Potassium.png',
+  'Calcium.png',
+  'Magnesium.png',
+  'Sulfur.png'
+];
