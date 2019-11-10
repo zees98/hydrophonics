@@ -47,7 +47,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                       hintText: '$val'),
                     onChanged: (newValue) {
                       setState(() {
-                        wateranalysis[val] = double.parse(val);
+                        wateranalysis[val] = double.parse(newValue);
                       });
                     },
                   ),
@@ -76,4 +76,5 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
       ),
     );
   }
+  
 }

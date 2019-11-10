@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/constants.dart';
+import 'package:hydrophonics/water.dart';
 
 class ResultScreen extends StatefulWidget {
   final String crop;
@@ -25,12 +26,12 @@ class _ResultScreenState extends State<ResultScreen> {
     'Sulphur'
   ];
  
-  
+  Map<String, double> balance;
   Map<String, double> initConversion(){
-    List<double> wA = widget.waterAnalysis.values.toList();
+    List<double> wA = widget.waterAnalysis != null?widget.waterAnalysis.values.toList(): [0,0,0,0,0,0,0];
     List<double> result = suggestedNutrients[crop];
     
-     Map<String, double> chemConversion = {
+     balance = {
       'Nitrate': (result[0] * (62 / 14) * 0.9 )- wA[0],
       'Ammonium': (result[0] * (18 / 14) * 0.1) - wA[1],
       'Phosphate' : (result[1] * (95 / 31)) - wA[2],
@@ -43,12 +44,12 @@ class _ResultScreenState extends State<ResultScreen> {
       print(val);
     });
     print('COnversion');
-     chemConversion.values.forEach(
+     balance.values.forEach(
     (val){
       print('$val \n');
     }
   );
-   return chemConversion;
+   return balance;
   }
   @override
   void initState() {
@@ -157,7 +158,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Text('Suggested Nutrient Solution',
+                        child: Text('Suggested Nutrient Solution (PPM)',
                             style:
                                 TextStyle(fontSize: 20, fontFamily: 'OpenSans'), textAlign: TextAlign.center,),
                       ),
@@ -188,4 +189,37 @@ class _ResultScreenState extends State<ResultScreen> {
       ),
     );
   }
-}
+  Map<String, double> catIons(){
+      return {
+        'Ammonium' : balance['Ammonium'] /18.04 ,
+        'Potassium': balance['Potassium'] / 39.1,
+        'Calcium' : balance['Calcium'] / 40.08,
+        'Magnesium' : balance['Magnesium'] / 24.31 
+      };
+  }
+  Map<String, double> anIons(){
+      return {
+        'Nitrate' : balance['Nitrate'] /62 ,
+        'Sulphate' : balance['Sulphate'] / 96,
+
+        'Phosphate': balance['Phosphate'] / 95,
+        
+        'Chloride' : 0.0 
+      };
+  }
+  // Map<String, double> actual(){
+  //   Map an = anIons();
+  //   Map cat = catIons();
+  //   return {
+  //     'Ammonium Sulphate' : ((cat['Ammonium'] - cat['Calcium']) / 2) * 132.14,
+  //     'Calcium Nitrate' : cat['Calcium'],
+  //     'Potassium Nitrate' : cat['Potassium'] -
+  //     'Potassium Sulphate': 
+  //     'Magnesium Sulphate': 
+  //     'Mono Potassium Phosphate' :
+
+  //   }
+
+
+  }
+

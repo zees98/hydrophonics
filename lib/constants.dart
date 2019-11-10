@@ -1,15 +1,6 @@
-List<String> images = [
-  'Tomato',
-  'Lettuce',
-  'Cucumber',
-  'Basil',
-  'Pepper',
-  'Strawberry',
-  'Melon',
-  'Roses',
-  'Herbs',
-  'Spinach'
-];
+
+
+
 Map<String, List<String>> optimalEnv = {
   'Tomato': ['12 - 16', '55 - 65', '18 - 28'],
   'Lettuce': ['10 -12', '50 - 70', '16 - 22'],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/crop.dart';
+import 'package:hydrophonics/fertilizer.dart';
+import 'package:hydrophonics/selection.dart';
 
 
 main(List<String> args) {
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 1) , (){
       Navigator.push(context, MaterialPageRoute(builder: (context){
-        return CropScreen();
+        return SelectionScreen();
       })
       );
     });
