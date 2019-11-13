@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/crop.dart';
+import 'package:hydrophonics/fertilizer.dart';
 
 
 class SelectionScreen extends StatefulWidget {
@@ -26,13 +27,14 @@ class _SelectionScreenState extends State<SelectionScreen> {
         },
       ),
       body: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(
+          Material(
+            elevation: 3.0,
+            color: Colors.grey.shade900,
+             borderRadius: BorderRadius.only(
                     bottomRight: Radius.elliptical(790, 500),
-                    topLeft: Radius.elliptical(800, 580))),
+                    topLeft: Radius.elliptical(800, 580))
           ),
           SafeArea(
             child: Padding(
@@ -69,7 +71,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                   FlatButton(
                     onPressed: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return CropScreen();
+                      return Fertilizer();
                     })),
                     child: Align(
                       alignment: AlignmentDirectional.centerEnd,

@@ -5,14 +5,15 @@ import 'package:hydrophonics/water.dart';
 class ResultScreen extends StatefulWidget {
   final String crop;
   final Map<String, double> waterAnalysis;
-  const ResultScreen({Key key, this.crop, this.waterAnalysis}) : super(key: key);
+  const ResultScreen({Key key, this.crop, this.waterAnalysis})
+      : super(key: key);
   @override
   _ResultScreenState createState() => _ResultScreenState();
 }
 
 class _ResultScreenState extends State<ResultScreen> {
   String crop;
-  
+
   List<String> icons = ['idea.png', 'drop.png', 'hot.png'];
   List<String> columns = ['Lightning Hours', 'Humidity', 'Temperature'];
   List<String> coulmn1 = ['pH', 'EC', 'PPM'];
@@ -25,46 +26,43 @@ class _ResultScreenState extends State<ResultScreen> {
     'Magnesium',
     'Sulphur'
   ];
- 
+
   Map<String, double> balance;
-  Map<String, double> initConversion(){
-    List<double> wA = widget.waterAnalysis != null?widget.waterAnalysis.values.toList(): [0,0,0,0,0,0,0];
+  Map<String, double> initConversion() {
+    List<double> wA = widget.waterAnalysis != null
+        ? widget.waterAnalysis.values.toList()
+        : [0, 0, 0, 0, 0, 0, 0];
     List<double> result = suggestedNutrients[crop];
-    
-     balance = {
-      'Nitrate': (result[0] * (62 / 14) * 0.9 )- wA[0],
+
+    balance = {
+      'Nitrate': (result[0] * (62 / 14) * 0.9) - wA[0],
       'Ammonium': (result[0] * (18 / 14) * 0.1) - wA[1],
-      'Phosphate' : (result[1] * (95 / 31)) - wA[2],
-      'Potassium' : (result[2] - wA[3]),
-      'Calcium' : (result[3] - wA[4]),
-      'Magnesium' : (result[4] - wA[5]),
-      'Sulphate' : (result[5] * (96 / 32)) - wA[6]
-    }; 
-    wA.forEach((val){
-      print(val);
-    });
-    print('COnversion');
-     balance.values.forEach(
-    (val){
-      print('$val \n');
-    }
-  );
-   return balance;
+      'Phosphate': (result[1] * (95 / 31)) - wA[2],
+      'Potassium': (result[2] - wA[3]),
+      'Calcium': (result[3] - wA[4]),
+      'Magnesium': (result[4] - wA[5]),
+      'Sulphate': (result[5] * (96 / 32)) - wA[6]
+    };
+   
+    return balance;
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       crop = widget.crop;
-      
     });
-    
+    checkMethod();
   }
-
+  checkMethod(){
+    initConversion();
+  }
   @override
   Widget build(BuildContext context) {
-    initConversion();
+    
+    var textStyle = TextStyle(fontSize: 20, fontFamily: 'OpenSans');
     return Scaffold(
       appBar: AppBar(
         title: Text('Optimal Conditions'),
@@ -158,9 +156,11 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Text('Suggested Nutrient Solution (PPM)',
-                            style:
-                                TextStyle(fontSize: 20, fontFamily: 'OpenSans'), textAlign: TextAlign.center,),
+                        child: Text(
+                          'Suggested Nutrient Solution (PPM)',
+                          style: textStyle,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       DataTable(
                           headingRowHeight: 0,
@@ -178,7 +178,15 @@ class _ResultScreenState extends State<ResultScreen> {
                               DataCell(Text(column2[list.indexOf(val)])),
                               DataCell(Text(val.toString())),
                             ]);
-                          }).toList())
+                          }).toList()),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Tank A",
+                          textAlign: TextAlign.center,
+                          style: textStyle.copyWith(fontSize: 24),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -189,37 +197,42 @@ class _ResultScreenState extends State<ResultScreen> {
       ),
     );
   }
-  Map<String, double> catIons(){
-      return {
-        'Ammonium' : balance['Ammonium'] /18.04 ,
-        'Potassium': balance['Potassium'] / 39.1,
-        'Calcium' : balance['Calcium'] / 40.08,
-        'Magnesium' : balance['Magnesium'] / 24.31 
-      };
-  }
-  Map<String, double> anIons(){
-      return {
-        'Nitrate' : balance['Nitrate'] /62 ,
-        'Sulphate' : balance['Sulphate'] / 96,
 
-        'Phosphate': balance['Phosphate'] / 95,
-        
-        'Chloride' : 0.0 
-      };
-  }
-  // Map<String, double> actual(){
-  //   Map an = anIons();
-  //   Map cat = catIons();
-  //   return {
-  //     'Ammonium Sulphate' : ((cat['Ammonium'] - cat['Calcium']) / 2) * 132.14,
-  //     'Calcium Nitrate' : cat['Calcium'],
-  //     'Potassium Nitrate' : cat['Potassium'] -
-  //     'Potassium Sulphate': 
-  //     'Magnesium Sulphate': 
-  //     'Mono Potassium Phosphate' :
-
-  //   }
-
-
+  Map<String, double> catIons() {
+    return {
+      'Ammonium': balance['Ammonium'] / 18.04,
+      'Potassium': balance['Potassium'] / 39.1,
+      'Calcium': balance['Calcium'] / 40.08,
+      'Magnesium': balance['Magnesium'] / 24.31
+    };
   }
 
+  Map<String, double> anIons() {
+    return {
+      'Nitrate': balance['Nitrate'] / 62,
+      'Sulphate': balance['Sulphate'] / 96,
+      'Phosphate': balance['Phosphate'] / 95,
+      'Chloride': 0.0
+    };
+  }
+
+  Map<String, double> tanks() {
+    Map<String, double> cat = catIons();
+    cat.forEach((k,v){
+      print(v);
+    });
+    Map<String, double> an = anIons();
+    Map<String, double> res = {
+      'Ammonium Sulphate': (cat['Ammonium'] - cat['Calcium']) / 2,
+      'Calcium Nitrate': cat['Calcium'],
+      'Magnesium Sulphate' : cat['Magnesium'],
+      'Mono Potassium Sulfate' : an['Phosphate'],
+    };
+    res['Potassium Sulfate'] =
+        an['Sulphate'] - res['Ammonium Sulphate'] - cat['Magnesium'];
+    res['Potassium Nitrate'] = cat["Potassium"] - res['Potassium Sulfate'] * 2;
+    return res;
+  }
+  
+
+}
