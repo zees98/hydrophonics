@@ -21,30 +21,31 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 1) , (){
-      Navigator.push(context, MaterialPageRoute(builder: (context){
-        return SelectionScreen();
-      })
-      );
-    });
+    //Future.delayed(Duration(seconds: 1) , (){
+      //Navigator.push(context, MaterialPageRoute(builder: (context){
+        //return SelectionScreen();
+      //})
+      //);
+    ///});
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Center(
-                child: CircleAvatar(
-              backgroundImage: AssetImage('assets/logo.png'),
-              radius: 150,
-            )),
-            
-          ],
-        ),
-      ),
+      body: 
     );
   }
 }
+// SafeArea(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.spaceAround,
+//           children: <Widget>[
+//             Center(
+//                 child: CircleAvatar(
+//               backgroundImage: AssetImage('assets/logo.png'),
+//               radius: 150,
+//             )),
+            
+//           ],
+//         ),
+//       ),

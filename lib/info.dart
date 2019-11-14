@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/constants.dart';
 import 'package:hydrophonics/water.dart';
+import 'dart:math' as Math;
 
 class ResultScreen extends StatefulWidget {
   final String crop;
@@ -28,7 +29,7 @@ class _ResultScreenState extends State<ResultScreen> {
   ];
 
   Map<String, double> balance;
-  Map<String, double> initConversion() {
+  void initConversion() {
     List<double> wA = widget.waterAnalysis != null
         ? widget.waterAnalysis.values.toList()
         : [0, 0, 0, 0, 0, 0, 0];
@@ -43,25 +44,36 @@ class _ResultScreenState extends State<ResultScreen> {
       'Magnesium': (result[4] - wA[5]),
       'Sulphate': (result[5] * (96 / 32)) - wA[6]
     };
-   
-    return balance;
+    print('Suggested Solution');
+    result.forEach((f) {
+      print(f);
+    });
+    print('Water Analysis');
+    wA.forEach((k) {
+      print(k);
+    });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    //TODO: implement initState
     super.initState();
     setState(() {
       crop = widget.crop;
     });
-    checkMethod();
-  }
-  checkMethod(){
+    //checkMethod();
     initConversion();
+
   }
+
+  checkMethod() {
+    tanks().forEach((f, v) {
+      print("Key: $f, Value: $v");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     var textStyle = TextStyle(fontSize: 20, fontFamily: 'OpenSans');
     return Scaffold(
       appBar: AppBar(
@@ -217,22 +229,33 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Map<String, double> tanks() {
-    Map<String, double> cat = catIons();
-    cat.forEach((k,v){
+   // initConversion();
+    print('Balance PPM');
+    balance.forEach((k, v) {
       print(v);
     });
+
+    Map<String, double> cat = catIons();
+    print('CatIons');
+    cat.forEach((k, v) {
+      print('Cation: $k, Value: $v');
+    });
+
     Map<String, double> an = anIons();
+    print('anIons');
+    an.forEach((k, v) {
+      print('Anion: $k, Value: $v');
+    });
+    print('Molarity');
     Map<String, double> res = {
-      'Ammonium Sulphate': (cat['Ammonium'] - cat['Calcium']) / 2,
-      'Calcium Nitrate': cat['Calcium'],
-      'Magnesium Sulphate' : cat['Magnesium'],
-      'Mono Potassium Sulfate' : an['Phosphate'],
+      'Calcium Nitrate': cat['Calcium'] * 216.1,
+      'Magnesium Sulphate': cat['Magnesium'] * 246.4,
+      'Mono Potassium Sulfate': an['Phosphate'] * 136.1,
     };
+    res['Ammonium Sulphate'] = ((cat['Ammonium'] - cat['Calcium'] * 0.2) / 2) * 132.14;
     res['Potassium Sulfate'] =
-        an['Sulphate'] - res['Ammonium Sulphate'] - cat['Magnesium'];
-    res['Potassium Nitrate'] = cat["Potassium"] - res['Potassium Sulfate'] * 2;
+        (an['Sulphate'] - res['Ammonium Sulphate'] - res['Magnesium Sulphate']) * 174.3;
+    res['Potassium Nitrate'] = (cat["Potassium"] - res['Potassium Sulfate'] * 2) * 101.1;
     return res;
   }
-  
-
 }
