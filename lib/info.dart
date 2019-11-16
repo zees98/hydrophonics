@@ -67,7 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
       tankA = {
         'Calcium Nitrate (15-0-0)': res['Calcium Nitrate'],
         'Potassium Nitrate (13-0-46)': res['Potassium Nitrate'] / 2,
-        'Fe EDTA 13%': 30.77
+        'Fe EDTA 13%': 307.7
       };
       tankB = {
         'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
@@ -75,11 +75,11 @@ class _ResultScreenState extends State<ResultScreen> {
         'Magnesium Sulphate': res['Magnesium Sulphate'],
         'Mono Potassium Phosphate \n(0-52-34)': res['Mono Potassium Phosphate'],
         'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
-        'Mn EDTA 13%': 7.70,
-        'Zn ETDA 15%': 2.00,
-        'Cu EDTA 14%	': 1.00,
-        'Boric Acid	': 2.90,
-        'Sodium Molybdate': 0.30
+        'Mn EDTA 13%': 77.0,
+        'Zn ETDA 15%': 20.0,
+        'Cu EDTA 14%	': 10.0,
+        'Boric Acid	': 29.0,
+        'Sodium Molybdate': 3.0
       };
     });
     res.forEach((f, v) {
@@ -312,7 +312,9 @@ class TankTable extends StatelessWidget {
         horizontalMargin: 0.0,
         
         columns: ['Fertilizer', 'Quantity (gram)'].map((f) {
-          return DataColumn(label: Center(child: Text(f)));
+          return DataColumn(
+            
+            label: Center(child: Text(f)));
         }).toList(),
         rows: tankB.keys.map((f) {
           return DataRow(
