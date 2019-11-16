@@ -29,7 +29,7 @@ class _ResultScreenState extends State<ResultScreen> {
   ];
 
   Map<String, double> res;
-  Map<String, double> tankB;
+  Map<String, double> tankA, tankB;
   Map<String, double> balance;
   void initConversion() {
     List<double> wA = widget.waterAnalysis != null
@@ -64,24 +64,27 @@ class _ResultScreenState extends State<ResultScreen> {
       crop = widget.crop;
       initConversion();
       res = tanks();
+      tankA = {
+        'Calcium Nitrate (15-0-0)': res['Calcium Nitrate'],
+        'Potassium Nitrate (13-0-46)': res['Potassium Nitrate'] / 2,
+        'Fe EDTA 13%': 30.77
+      };
       tankB = {
-      'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
-      'Potassium Sulphate (0-0-50)': res['Potassium Sulfate'],
-      'Magnesium Sulphate': res['Magnesium Sulphate'],
-      'Mono Potassium Phosphate (0-52-34)': res['Mono Potassium Phosphate'],
-      'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
-      'Mn EDTA 13%': 7.70,
-      'Zn ETDA 15%': 2.00,
-      'Cu EDTA 14%	': 1.00,
-      'Boric Acid	': 2.90,
-      'Sodium Molybdate': 0.30
-    };
-    
+        'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
+        'Potassium Sulphate (0-0-50)': res['Potassium Sulfate'],
+        'Magnesium Sulphate': res['Magnesium Sulphate'],
+        'Mono Potassium Phosphate \n(0-52-34)': res['Mono Potassium Phosphate'],
+        'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
+        'Mn EDTA 13%': 7.70,
+        'Zn ETDA 15%': 2.00,
+        'Cu EDTA 14%	': 1.00,
+        'Boric Acid	': 2.90,
+        'Sodium Molybdate': 0.30
+      };
     });
     res.forEach((f, v) {
       print("$f : $v");
     });
-    
   }
 
   @override
@@ -211,34 +214,8 @@ class _ResultScreenState extends State<ResultScreen> {
                           style: textStyle.copyWith(fontSize: 24),
                         ),
                       ),
-                      Table(
-                        
-                        children: [
-                          "Calcium Nitrate",
-                          "Potassium Nitrate",
-                          "Fe EDTA 13%"
-                        ].map<TableRow>((row) {
-                          return TableRow(
-                            decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-                            children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                row,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                row.startsWith('Fe')
-                                    ? "30.77"
-                                    : res[row].toStringAsFixed(2),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          ]);
-                        }).toList(),
+                      TankTable(
+                        tankB: tankA,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -248,21 +225,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           style: textStyle.copyWith(fontSize: 24),
                         ),
                       ),
-                      Table(  
-                        children: tankB.keys.map((f){
-                          return TableRow(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white)
-                            ),
-                            children: [f,tankB[f].toStringAsFixed(2)].map((f){
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(f, textAlign: TextAlign.center,),
-                              );
-                            }).toList()
-                          );
-                        }).toList()
-                       )
+                      TankTable(tankB: tankB)
                     ],
                   ),
                 ),
@@ -310,6 +273,7 @@ class _ResultScreenState extends State<ResultScreen> {
     an.forEach((k, v) {
       print('Anion: $k, Value: $v');
     });
+
     print('Molarity');
     Map<String, double> res = {
       'Calcium Nitrate': cat['Calcium'],
@@ -320,13 +284,48 @@ class _ResultScreenState extends State<ResultScreen> {
     res['Potassium Sulfate'] =
         (an['Sulphate'] - res['Ammonium Sulphate'] - res['Magnesium Sulphate']);
     res['Potassium Nitrate'] =
-        (cat["Potassium"] - res['Potassium Sulfate'] * 2) * 101.1 / 2;
-
-    res["Potassium Sulfate"] *= 174.3;
-    res['Ammonium Sulphate'] *= 132.14;
-    res['Calcium Nitrate'] *= 216.1;
-    res['Magnesium Sulphate'] *= 246.4;
-    res['Mono Potassium Phosphate'] *= 136.1;
+        (cat["Potassium"] - res['Potassium Sulfate'] * 2 - an['Phosphate']);
+    res.forEach((k, v) {
+      print(v);
+    });
+    res['Potassium Nitrate'] *= 101.1 * 10;
+    res["Potassium Sulfate"] *= 174.3 * 10;
+    res['Ammonium Sulphate'] *= 132.14 * 10;
+    res['Calcium Nitrate'] *= 216.1 * 10;
+    res['Magnesium Sulphate'] *= 246.4 * 10;
+    res['Mono Potassium Phosphate'] *= 136.1 * 10;
     return res;
+  }
+}
+
+class TankTable extends StatelessWidget {
+  const TankTable({
+    Key key,
+    @required this.tankB,
+  }) : super(key: key);
+
+  final Map<String, double> tankB;
+
+  @override
+  Widget build(BuildContext context) {
+    return DataTable(
+        horizontalMargin: 0.0,
+        
+        columns: ['Fertilizer', 'Quantity (gram)'].map((f) {
+          return DataColumn(label: Center(child: Text(f)));
+        }).toList(),
+        rows: tankB.keys.map((f) {
+          return DataRow(
+              cells: [f, tankB[f].toStringAsFixed(2)].map((f) {
+            return DataCell(
+              Center(
+                child: Text(
+                  f,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }).toList());
+        }).toList());
   }
 }
