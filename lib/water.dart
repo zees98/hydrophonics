@@ -67,6 +67,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                             top: 20.0, left: 8.0, right: 8.0),
                         child: TextField(
                           expands: false,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50)),
