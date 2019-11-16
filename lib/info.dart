@@ -67,7 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
       tankA = {
         'Calcium Nitrate (15-0-0)': res['Calcium Nitrate'],
         'Potassium Nitrate (13-0-46)': res['Potassium Nitrate'] / 2,
-        'Fe EDTA 13%': 307.7
+        'Fe EDTA 13%': 30.77 * widget.waterAnalysis.values.last
       };
       tankB = {
         'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
@@ -75,12 +75,12 @@ class _ResultScreenState extends State<ResultScreen> {
         'Magnesium Sulphate': res['Magnesium Sulphate'],
         'Mono Potassium Phosphate \n(0-52-34)': res['Mono Potassium Phosphate'],
         'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
-        'Mn EDTA 13%': 77.0,
-        'Zn ETDA 15%': 20.0,
-        'Cu EDTA 14%	': 10.0,
-        'Boric Acid	': 29.0,
-        'Sodium Molybdate': 3.0
-      };
+        'Mn EDTA 13%': 7.7 * widget.waterAnalysis.values.last,
+        'Zn ETDA 15%': 2.0 * widget.waterAnalysis.values.last,
+        'Cu EDTA 14%	': 1.0 * widget.waterAnalysis.values.last,
+        'Boric Acid	': 2.9 * widget.waterAnalysis.values.last,
+        'Sodium Molybdate': 0.3 * widget.waterAnalysis.values.last
+       };
     });
     res.forEach((f, v) {
       print("$f : $v");
@@ -288,12 +288,12 @@ class _ResultScreenState extends State<ResultScreen> {
     res.forEach((k, v) {
       print(v);
     });
-    res['Potassium Nitrate'] *= 101.1 * 10;
-    res["Potassium Sulfate"] *= 174.3 * 10;
-    res['Ammonium Sulphate'] *= 132.14 * 10;
-    res['Calcium Nitrate'] *= 216.1 * 10;
-    res['Magnesium Sulphate'] *= 246.4 * 10;
-    res['Mono Potassium Phosphate'] *= 136.1 * 10;
+    res['Potassium Nitrate'] *= 101.1 * widget.waterAnalysis.values.last;
+    res["Potassium Sulfate"] *= 174.3 * widget.waterAnalysis.values.last;
+    res['Ammonium Sulphate'] *= 132.14 * widget.waterAnalysis.values.last;
+    res['Calcium Nitrate'] *= 216.1 * widget.waterAnalysis.values.last;
+    res['Magnesium Sulphate'] *= 246.4 * widget.waterAnalysis.values.last;
+    res['Mono Potassium Phosphate'] *= 136.1 * widget.waterAnalysis.values.last;
     return res;
   }
 }

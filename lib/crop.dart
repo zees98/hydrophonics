@@ -46,7 +46,7 @@ class _CropScreenState extends State<CropScreen> {
                                   Navigator.pop(context);
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context){
-                                      return WaterAnalysis(crop: val,);
+                                      return WaterAnalysis(crop: val,showConOnly: false);
                                     }
                                   ));
                                 },
@@ -58,7 +58,7 @@ class _CropScreenState extends State<CropScreen> {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context){
                                       
-                                      return ResultScreen(crop: val,);
+                                      return WaterAnalysis(crop: val,showConOnly: true,);
                                     }
                                   ));
                                 },
