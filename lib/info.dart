@@ -28,6 +28,8 @@ class _ResultScreenState extends State<ResultScreen> {
     'Sulphur'
   ];
 
+  Map<String, double> res;
+  Map<String, double> tankB;
   Map<String, double> balance;
   void initConversion() {
     List<double> wA = widget.waterAnalysis != null
@@ -60,16 +62,26 @@ class _ResultScreenState extends State<ResultScreen> {
     super.initState();
     setState(() {
       crop = widget.crop;
+      initConversion();
+      res = tanks();
+      tankB = {
+      'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
+      'Potassium Sulphate (0-0-50)': res['Potassium Sulfate'],
+      'Magnesium Sulphate': res['Magnesium Sulphate'],
+      'Mono Potassium Phosphate (0-52-34)': res['Mono Potassium Phosphate'],
+      'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
+      'Mn EDTA 13%': 7.70,
+      'Zn ETDA 15%': 2.00,
+      'Cu EDTA 14%	': 1.00,
+      'Boric Acid	': 2.90,
+      'Sodium Molybdate': 0.30
+    };
+    
     });
-    //checkMethod();
-    initConversion();
-
-  }
-
-  checkMethod() {
-    tanks().forEach((f, v) {
-      print("Key: $f, Value: $v");
+    res.forEach((f, v) {
+      print("$f : $v");
     });
+    
   }
 
   @override
@@ -199,6 +211,58 @@ class _ResultScreenState extends State<ResultScreen> {
                           style: textStyle.copyWith(fontSize: 24),
                         ),
                       ),
+                      Table(
+                        
+                        children: [
+                          "Calcium Nitrate",
+                          "Potassium Nitrate",
+                          "Fe EDTA 13%"
+                        ].map<TableRow>((row) {
+                          return TableRow(
+                            decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+                            children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                row,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                row.startsWith('Fe')
+                                    ? "30.77"
+                                    : res[row].toStringAsFixed(2),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ]);
+                        }).toList(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Tank B",
+                          textAlign: TextAlign.center,
+                          style: textStyle.copyWith(fontSize: 24),
+                        ),
+                      ),
+                      Table(  
+                        children: tankB.keys.map((f){
+                          return TableRow(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)
+                            ),
+                            children: [f,tankB[f].toStringAsFixed(2)].map((f){
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(f, textAlign: TextAlign.center,),
+                              );
+                            }).toList()
+                          );
+                        }).toList()
+                       )
                     ],
                   ),
                 ),
@@ -229,7 +293,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Map<String, double> tanks() {
-   // initConversion();
+    //initConversion();
     print('Balance PPM');
     balance.forEach((k, v) {
       print(v);
@@ -248,14 +312,21 @@ class _ResultScreenState extends State<ResultScreen> {
     });
     print('Molarity');
     Map<String, double> res = {
-      'Calcium Nitrate': cat['Calcium'] * 216.1,
-      'Magnesium Sulphate': cat['Magnesium'] * 246.4,
-      'Mono Potassium Sulfate': an['Phosphate'] * 136.1,
+      'Calcium Nitrate': cat['Calcium'],
+      'Magnesium Sulphate': cat['Magnesium'],
+      'Mono Potassium Phosphate': an['Phosphate'],
     };
-    res['Ammonium Sulphate'] = ((cat['Ammonium'] - cat['Calcium'] * 0.2) / 2) * 132.14;
+    res['Ammonium Sulphate'] = ((cat['Ammonium'] - (cat['Calcium'] * 0.2)) / 2);
     res['Potassium Sulfate'] =
-        (an['Sulphate'] - res['Ammonium Sulphate'] - res['Magnesium Sulphate']) * 174.3;
-    res['Potassium Nitrate'] = (cat["Potassium"] - res['Potassium Sulfate'] * 2) * 101.1;
+        (an['Sulphate'] - res['Ammonium Sulphate'] - res['Magnesium Sulphate']);
+    res['Potassium Nitrate'] =
+        (cat["Potassium"] - res['Potassium Sulfate'] * 2) * 101.1 / 2;
+
+    res["Potassium Sulfate"] *= 174.3;
+    res['Ammonium Sulphate'] *= 132.14;
+    res['Calcium Nitrate'] *= 216.1;
+    res['Magnesium Sulphate'] *= 246.4;
+    res['Mono Potassium Phosphate'] *= 136.1;
     return res;
   }
 }
