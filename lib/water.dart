@@ -33,7 +33,10 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
         ),
         title: Text('Water Analysis'),
         actions: <Widget>[
-          Image.asset('assets/${widget.crop.toLowerCase()}.png')
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/${widget.crop.toLowerCase()}.png'),
+          )
         ],
       ),
       body: SafeArea(
@@ -41,24 +44,23 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
           children: <Widget>[
             widget.showConOnly
                 ? Padding(
-                    padding: const EdgeInsets.only(
-                            top: 20.0, left: 8.0, right: 8.0),
-                      
+                    padding:
+                        const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
                     child: TextField(
-                    onChanged: (newVal) {
-                      setState(() {
-                        wateranalysis[wateranalysis.keys.last] =
-                            double.parse(newVal);
-                      });
-                    },
-                    keyboardType: TextInputType.numberWithOptions(
-                        decimal: true, signed: false),
-                    decoration: InputDecoration(
-                        labelText: 'Volume of Water (mg/L)',
-                        hintText: 'Concentration Factor',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50))),
-                  ))
+                      onChanged: (newVal) {
+                        setState(() {
+                          wateranalysis[wateranalysis.keys.last] =
+                              double.parse(newVal);
+                        });
+                      },
+                      keyboardType: TextInputType.numberWithOptions(
+                          decimal: true, signed: false),
+                      decoration: InputDecoration(
+                          labelText: 'Volume of Water (mg/L)',
+                          hintText: 'Concentration Factor',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                    ))
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: wateranalysis.keys.map<Widget>((val) {
@@ -67,7 +69,8 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                             top: 20.0, left: 8.0, right: 8.0),
                         child: TextField(
                           expands: false,
-                          keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          keyboardType:
+                              TextInputType.numberWithOptions(decimal: true),
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50)),

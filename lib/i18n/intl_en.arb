@@ -1,0 +1,13 @@
+{
+    "@@last_modified": "2019-11-18T14:50:55.464314",
+    "chooseCrop": "Choose Crop",
+    "@chooseCrop": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "viewFertilizaer": "View Fertilizers",
+    "@viewFertilizaer": {
+      "type": "text",
+      "placeholders": {}
+    }
+  }

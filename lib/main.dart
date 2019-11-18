@@ -1,15 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:hydrophonics/crop.dart';
-import 'package:hydrophonics/fertilizer.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hydrophonics/localization/localizations.dart';
 //import 'package:hydrophonics/message.dart';
 import 'package:hydrophonics/selection.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-main(List<String> args) {
-  runApp(MaterialApp(
-    theme: ThemeData.dark()
-        .copyWith(appBarTheme: AppBarTheme(color: Colors.black54)),
-    home: SplashScreen(),
-  ));
+class Utils {
+  static SharedPreferences prefs;
+  static AppLocalizations loc;
+}
+
+void main() async {
+  Utils.prefs = await SharedPreferences.getInstance();
+  String language = Utils.prefs.getString("lang") ?? "en";
+  print(language);
+  runApp(
+    MaterialApp(
+      theme: ThemeData.dark()
+          .copyWith(appBarTheme: AppBarTheme(color: Colors.black54)),
+      home: SplashScreen(),
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('ar', ''),
+      ],
+      locale: Locale(Utils.prefs.getString("lang") ?? "en"),
+    ),
+  );
 }
 
 class SplashScreen extends StatefulWidget {
@@ -20,10 +41,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 1), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
         return SelectionScreen();
       }));
     });
@@ -31,32 +52,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Utils.loc = AppLocalizations.of(context);
     return Scaffold(
         body: SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Center(
-              child: CircleAvatar(
-            backgroundImage: AssetImage('assets/logo.png'),
-            radius: 150,
-          )),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/app_logo.png'),
+              radius: 150,
+            ),
+          ),
         ],
       ),
     ));
   }
 }
-
-// SafeArea(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: <Widget>[
-//             Center(
-//                 child: CircleAvatar(
-//               backgroundImage: AssetImage('assets/logo.png'),
-//               radius: 150,
-//             )),
-
-//           ],
-//         ),
-//       ),

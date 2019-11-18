@@ -1,6 +1,3 @@
-
-
-
 Map<String, List<String>> optimalEnv = {
   'Tomato': ['12 - 16', '55 - 65', '18 - 28'],
   'Lettuce': ['10 -12', '50 - 70', '16 - 22'],

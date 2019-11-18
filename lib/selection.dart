@@ -3,7 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/crop.dart';
 import 'package:hydrophonics/fertilizer.dart';
-
+import 'package:hydrophonics/localization/localizations.dart';
+import 'package:hydrophonics/main.dart';
 
 class SelectionScreen extends StatefulWidget {
   @override
@@ -16,14 +17,14 @@ class _SelectionScreenState extends State<SelectionScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.settings),
-        onPressed: (){
-          showDialog(
-            context: context,
-            builder: (context){
-              
-              return AlertBox();
-            }
-          );
+        onPressed: () async {
+          await showDialog(
+              context: context,
+              builder: (context) {
+                return AlertBox();
+              });
+
+          setState(() {});
         },
       ),
       body: Stack(
@@ -32,9 +33,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
           Material(
             elevation: 3.0,
             color: Colors.grey.shade900,
-             borderRadius: BorderRadius.only(
-                    bottomRight: Radius.elliptical(790, 500),
-                    topLeft: Radius.elliptical(800, 580))
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.elliptical(790, 500),
+              topLeft: Radius.elliptical(800, 580),
+            ),
           ),
           SafeArea(
             child: Padding(
@@ -64,21 +66,25 @@ class _SelectionScreenState extends State<SelectionScreen> {
                         SizedBox(
                           width: 50,
                         ),
-                        Text(AlertBox.isEng?'Choose Crops': 'اختيار المحاصيل')
+                        Text(Utils.loc.chooseCrop)
                       ],
                     ),
                   ),
                   FlatButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Fertilizer();
-                    })),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Fertilizer();
+                        },
+                      ),
+                    ),
                     child: Align(
                       alignment: AlignmentDirectional.centerEnd,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(AlertBox.getLang()?'View Fertilizers': 'عرض الأسمدة' ),
+                          Text(AppLocalizations.of(context).viewFertilizaer),
                           SizedBox(
                             width: 50,
                           ),
@@ -108,8 +114,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
 }
 
 class AlertBox extends StatefulWidget {
-  static bool  isEng = true;
-  static bool getLang()  => isEng;
   AlertBox({
     Key key,
   }) : super(key: key);
@@ -119,12 +123,9 @@ class AlertBox extends StatefulWidget {
 }
 
 class _AlertBoxState extends State<AlertBox> {
-  
-  
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
-      
       title: Text('Settings'),
       children: <Widget>[
         Padding(
@@ -132,15 +133,23 @@ class _AlertBoxState extends State<AlertBox> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(AlertBox.isEng? "English": "Arabic"),
+              Text(
+                  Utils.prefs.getString("lang") == "en" ? "Arabic" : "English"),
               Switch(
-                value: AlertBox.isEng,
-                onChanged: (val){
+                value: false,
+                onChanged: (val) {
                   setState(() {
-                    AlertBox.isEng = val;
-                    print(val); 
+                    String lang = Utils.prefs.getString("lang") ?? "en";
+                    if (lang == "en") {
+                      Utils.prefs.setString("lang", "ar");
+                    } else {
+                      Utils.prefs.setString("lang", "en");
+                    }
+                    print(Utils.prefs.getString("lang"));
+                    AppLocalizations.load(
+                        Locale(Utils.prefs.getString("lang"), ""));
+                    Navigator.of(context).pop();
                   });
-                  Navigator.pop(context);
                 },
               )
             ],

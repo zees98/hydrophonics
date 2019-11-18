@@ -80,7 +80,7 @@ class _ResultScreenState extends State<ResultScreen> {
         'Cu EDTA 14%	': 1.0 * widget.waterAnalysis.values.last,
         'Boric Acid	': 2.9 * widget.waterAnalysis.values.last,
         'Sodium Molybdate': 0.3 * widget.waterAnalysis.values.last
-       };
+      };
     });
     res.forEach((f, v) {
       print("$f : $v");
@@ -310,11 +310,8 @@ class TankTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataTable(
         horizontalMargin: 0.0,
-        
         columns: ['Fertilizer', 'Quantity (gram)'].map((f) {
-          return DataColumn(
-            
-            label: Center(child: Text(f)));
+          return DataColumn(label: Center(child: Text(f)));
         }).toList(),
         rows: tankB.keys.map((f) {
           return DataRow(

@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hydrophonics/info.dart';
-import 'package:hydrophonics/main.dart';
 import 'package:hydrophonics/water.dart';
 import 'constants.dart';
 
@@ -16,9 +14,8 @@ class _CropScreenState extends State<CropScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context)
-        ),
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.pop(context)),
         title: Text('Select a Crop'),
         centerTitle: true,
       ),
@@ -33,43 +30,44 @@ class _CropScreenState extends State<CropScreen> {
                 return MaterialButton(
                   onPressed: () {
                     showDialog(
-                      context: context,
-                      builder: (context) {
-                      return SimpleDialog(
-                        title: Text("Add Water Analysis?"),
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        context: context,
+                        builder: (context) {
+                          return SimpleDialog(
+                            title: Text("Add Water Analysis?"),
                             children: <Widget>[
-                              RaisedButton(
-                                onPressed: (){
-                                  Navigator.pop(context);
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context){
-                                      return WaterAnalysis(crop: val,showConOnly: false);
-                                    }
-                                  ));
-                                },
-                                child: Text('Yes'),
-                              ),
-                              RaisedButton(
-                                onPressed: (){
-                                  Navigator.pop(context);
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context){
-                                      
-                                      return WaterAnalysis(crop: val,showConOnly: true,);
-                                    }
-                                  ));
-                                },
-                                child: Text('No'),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return WaterAnalysis(
+                                            crop: val, showConOnly: false);
+                                      }));
+                                    },
+                                    child: Text('Yes'),
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return WaterAnalysis(
+                                          crop: val,
+                                          showConOnly: true,
+                                        );
+                                      }));
+                                    },
+                                    child: Text('No'),
+                                  )
+                                ],
                               )
-                              
                             ],
-                          )
-                        ],
-                      );
-                    });
+                          );
+                        });
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
