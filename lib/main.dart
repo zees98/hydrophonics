@@ -11,10 +11,12 @@ class Utils {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Utils.prefs = await SharedPreferences.getInstance();
   String language = Utils.prefs.getString("lang") ?? "en";
+  
   print(language);
-  runApp(
+   runApp(
     MaterialApp(
       theme: ThemeData.dark()
           .copyWith(appBarTheme: AppBarTheme(color: Colors.black54)),
@@ -39,6 +41,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+ 
   @override
   void initState() {
     super.initState();

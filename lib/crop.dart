@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrophonics/concentration.dart';
 import 'package:hydrophonics/water.dart';
 import 'constants.dart';
 
@@ -40,14 +41,12 @@ class _CropScreenState extends State<CropScreen> {
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   RaisedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return WaterAnalysis(
-                                            crop: val, showConOnly: false);
-                                      }));
-                                    },
+                                    onPressed: () => Navigator.push(
+                                        context, MaterialPageRoute(
+                                          builder: (context){
+                                            return WaterAnalysis(crop: val,);
+                                          }
+                                        )),
                                     child: Text('Yes'),
                                   ),
                                   RaisedButton(
@@ -55,10 +54,7 @@ class _CropScreenState extends State<CropScreen> {
                                       Navigator.pop(context);
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return WaterAnalysis(
-                                          crop: val,
-                                          showConOnly: true,
-                                        );
+                                         return ConcentrationScreen(crop: val,) ;
                                       }));
                                     },
                                     child: Text('No'),

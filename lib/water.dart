@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hydrophonics/concentration.dart';
 import 'package:hydrophonics/info.dart';
 
 class WaterAnalysis extends StatefulWidget {
   final String crop;
-  final bool showConOnly;
-  const WaterAnalysis({Key key, this.crop, this.showConOnly}) : super(key: key);
+
+  const WaterAnalysis({Key key, this.crop}) : super(key: key);
 
   @override
   _WaterAnalysisState createState() => _WaterAnalysisState();
@@ -19,11 +20,9 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
     'Calcium': 0.0,
     'Magnesium': 0.0,
     'Sulphate': 0.0,
-    'Volume of Water (mg/L)': 0.0
   };
   @override
   Widget build(BuildContext context) {
-    print(widget.showConOnly);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -42,48 +41,30 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
       body: SafeArea(
         child: ListView(
           children: <Widget>[
-            widget.showConOnly
-                ? Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
-                    child: TextField(
-                      onChanged: (newVal) {
-                        setState(() {
-                          wateranalysis[wateranalysis.keys.last] =
-                              double.parse(newVal);
-                        });
-                      },
-                      keyboardType: TextInputType.numberWithOptions(
-                          decimal: true, signed: false),
-                      decoration: InputDecoration(
-                          labelText: 'Volume of Water (mg/L)',
-                          hintText: 'Concentration Factor',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                    ))
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: wateranalysis.keys.map<Widget>((val) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20.0, left: 8.0, right: 8.0),
-                        child: TextField(
-                          expands: false,
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              hintText: '$val'),
-                          onChanged: (newValue) {
-                            setState(() {
-                              wateranalysis[val] = double.parse(newValue);
-                            });
-                          },
-                        ),
-                      );
-                    }).toList(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: wateranalysis.keys.map<Widget>((val) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
+                  child: TextField(
+                    expands: false,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        hintText: '$val'),
+                    onChanged: (newValue) {
+                      setState(() {
+                        
+                        wateranalysis[val] = double.parse(newValue);
+                      });
+                    },
                   ),
+                );
+              }).toList(),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -92,8 +73,10 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
               child: FlatButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ResultScreen(
-                        crop: widget.crop, waterAnalysis: wateranalysis);
+                    return ConcentrationScreen(
+                      wA: wateranalysis,
+                      crop: widget.crop,
+                    );
                   }));
                 },
                 child: Text('Proceed'),
