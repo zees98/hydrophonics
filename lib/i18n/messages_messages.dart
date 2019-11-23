@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "chooseCrop" : MessageLookupByLibrary.simpleMessage("Choose Crop"),
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("View Fertilizers"),
-    "contactUs" : MessageLookupByLibrary.simpleMessage("ContactUs")
+    "contactUs" : MessageLookupByLibrary.simpleMessage("ContactUs"),
+    "startGrowing" : MessageLookupByLibrary.simpleMessage("Start Growing"),
+    
   };
 }

@@ -34,7 +34,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/${widget.crop.toLowerCase()}.png'),
+            child: Image.asset('assets/app_logo.png'),
           )
         ],
       ),
@@ -72,12 +72,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
               padding: EdgeInsets.symmetric(horizontal: 60),
               child: FlatButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ConcentrationScreen(
-                      wA: wateranalysis,
-                      crop: widget.crop,
-                    );
-                  }));
+                  Navigator.pop(context, wateranalysis);
                 },
                 child: Text('Proceed'),
                 color: Colors.grey,

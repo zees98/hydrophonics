@@ -33,6 +33,12 @@ class AppLocalizations {
       name: 'contactUs',
     );
   }
+   String get startgrowing {
+    return Intl.message(
+      'Start Growing',
+      name: 'startgrowing',
+    );
+  }
   String get viewFertilizaer {
     return Intl.message(
       'View Fertilizers',

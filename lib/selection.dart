@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrophonics/contactus.dart';
 import 'package:hydrophonics/crop.dart';
 import 'package:hydrophonics/fertilizer.dart';
 import 'package:hydrophonics/localization/localizations.dart';
 import 'package:hydrophonics/main.dart';
+import 'package:hydrophonics/secondmenu.dart';
 
 class SelectionScreen extends StatefulWidget {
   @override
@@ -16,11 +18,14 @@ class _SelectionScreenState extends State<SelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       
         centerTitle: true,
-        backgroundColor: Colors.black.withOpacity(0),
+        
         title: Text("Smart Hydrophonics"),
         actions: <Widget>[
-          Image.asset('assets/app_logo.png')
+          Hero(
+            tag: "logo",
+            child: Image.asset('assets/app_logo.png'))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -49,7 +54,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                   color: Colors.grey.shade800,
                   onPressed: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) {
-                    return CropScreen();
+                    return SecondMenu();
                   })),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -59,7 +64,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                           padding: const EdgeInsets.all(24.0),
                           child: Image.asset('assets/crops.png'),
                         ),
-                        Text(Utils.loc.chooseCrop)
+                        Text(AppLocalizations.of(context).startgrowing)
                       ],
                     ),
                   ),
@@ -104,7 +109,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return Fertilizer();
+                                return ContactUS();
                               },
                             ),
                           ),
@@ -162,7 +167,8 @@ class _AlertBoxState extends State<AlertBox> {
               Text(
                   Utils.prefs.getString("lang") == "en" ? "Arabic" : "English"),
               Switch(
-                value: false,
+                activeColor: Colors.blue,
+                value:  Utils.prefs.getString("lang") == 'en' ? true: false,
                 onChanged: (val) {
                   setState(() {
                     String lang = Utils.prefs.getString("lang") ?? "en";

@@ -6,7 +6,8 @@ import 'dart:math' as Math;
 class ResultScreen extends StatefulWidget {
   final String crop;
   final Map<String, double> waterAnalysis;
-  const ResultScreen({Key key, this.crop, this.waterAnalysis})
+  final concentration;
+  const ResultScreen({Key key, this.crop, this.waterAnalysis, this.concentration})
       : super(key: key);
   @override
   _ResultScreenState createState() => _ResultScreenState();
@@ -67,7 +68,7 @@ class _ResultScreenState extends State<ResultScreen> {
       tankA = {
         'Calcium Nitrate (15-0-0)': res['Calcium Nitrate'],
         'Potassium Nitrate (13-0-46)': res['Potassium Nitrate'] / 2,
-        'Fe EDTA 13%': 30.77 * widget.waterAnalysis.values.last
+        'Fe EDTA 13%': 30.77 * widget.concentration
       };
       tankB = {
         'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
@@ -75,11 +76,11 @@ class _ResultScreenState extends State<ResultScreen> {
         'Magnesium Sulphate': res['Magnesium Sulphate'],
         'Mono Potassium Phosphate \n(0-52-34)': res['Mono Potassium Phosphate'],
         'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
-        'Mn EDTA 13%': 7.7 * widget.waterAnalysis.values.last,
-        'Zn ETDA 15%': 2.0 * widget.waterAnalysis.values.last,
-        'Cu EDTA 14%	': 1.0 * widget.waterAnalysis.values.last,
-        'Boric Acid	': 2.9 * widget.waterAnalysis.values.last,
-        'Sodium Molybdate': 0.3 * widget.waterAnalysis.values.last
+        'Mn EDTA 13%': 7.7 * widget.concentration,
+        'Zn ETDA 15%': 2.0 * widget.concentration,
+        'Cu EDTA 14%	': 1.0 * widget.concentration,
+        'Boric Acid	': 2.9 * widget.concentration,
+        'Sodium Molybdate': 0.3 * widget.concentration
       };
     });
     res.forEach((f, v) {
@@ -288,12 +289,13 @@ class _ResultScreenState extends State<ResultScreen> {
     res.forEach((k, v) {
       print(v);
     });
-    res['Potassium Nitrate'] *= 101.1 * widget.waterAnalysis.values.last;
-    res["Potassium Sulfate"] *= 174.3 * widget.waterAnalysis.values.last;
-    res['Ammonium Sulphate'] *= 132.14 * widget.waterAnalysis.values.last;
-    res['Calcium Nitrate'] *= 216.1 * widget.waterAnalysis.values.last;
-    res['Magnesium Sulphate'] *= 246.4 * widget.waterAnalysis.values.last;
-    res['Mono Potassium Phosphate'] *= 136.1 * widget.waterAnalysis.values.last;
+    print(widget.concentration);
+    res['Potassium Nitrate'] *= 101.1 * widget.concentration;
+    res["Potassium Sulfate"] *= 174.3 * widget.concentration;
+    res['Ammonium Sulphate'] *= 132.14 * widget.concentration;
+    res['Calcium Nitrate'] *= 216.1 * widget.concentration;
+    res['Magnesium Sulphate'] *= 246.4 * widget.concentration;
+    res['Mono Potassium Phosphate'] *= 136.1 * widget.concentration;
     return res;
   }
 }

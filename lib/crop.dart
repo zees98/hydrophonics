@@ -30,40 +30,7 @@ class _CropScreenState extends State<CropScreen> {
               children: optimalEnv.keys.toList().map<Widget>((val) {
                 return MaterialButton(
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return SimpleDialog(
-                            title: Text("Add Water Analysis?"),
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  RaisedButton(
-                                    onPressed: () => Navigator.push(
-                                        context, MaterialPageRoute(
-                                          builder: (context){
-                                            return WaterAnalysis(crop: val,);
-                                          }
-                                        )),
-                                    child: Text('Yes'),
-                                  ),
-                                  RaisedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                         return ConcentrationScreen(crop: val,) ;
-                                      }));
-                                    },
-                                    child: Text('No'),
-                                  )
-                                ],
-                              )
-                            ],
-                          );
-                        });
+                   Navigator.pop(context, val);
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -86,5 +53,42 @@ class _CropScreenState extends State<CropScreen> {
         ),
       ),
     );
+  }
+
+  Future buildShowDialog(BuildContext context, String val) {
+    return showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SimpleDialog(
+                          title: Text("Add Water Analysis?"),
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                RaisedButton(
+                                  onPressed: () => Navigator.push(
+                                      context, MaterialPageRoute(
+                                        builder: (context){
+                                          return WaterAnalysis(crop: val,);
+                                        }
+                                      )),
+                                  child: Text('Yes'),
+                                ),
+                                RaisedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                       return ConcentrationScreen() ;
+                                    }));
+                                  },
+                                  child: Text('No'),
+                                )
+                              ],
+                            )
+                          ],
+                        );
+                      });
   }
 }

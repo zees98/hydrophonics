@@ -3,30 +3,31 @@ import 'package:hydrophonics/info.dart';
 import 'package:hydrophonics/water.dart';
 
 class ConcentrationScreen extends StatefulWidget {
-  final Map<String, double> wA;
-  final String crop;
+  // final Map<String, double> wA;
+  // final String crop;
 
-  const ConcentrationScreen({Key key, this.wA, this.crop}) : super(key: key);
+ // const ConcentrationScreen({Key key, this.wA, this.crop}) : super(key: key);
   @override
   _ConcentrationScreenState createState() => _ConcentrationScreenState();
 }
 
 class _ConcentrationScreenState extends State<ConcentrationScreen> {
-  Map<String, double> wateranalysis;
+  // Map<String, double> wateranalysis;
+  double conn = 0.0;
   @override
   void initState() {
     
     super.initState();
-    wateranalysis = widget.wA == null ?{
-    'Nitrate': 0.0,
-    'Ammonium': 0.0,
-    'Phosphate': 0.0,
-    'Potassium': 0.0,
-    'Calcium': 0.0,
-    'Magnesium': 0.0,
-    'Sulphate': 0.0,
+  //   wateranalysis = widget.wA == null ?{
+  //   'Nitrate': 0.0,
+  //   'Ammonium': 0.0,
+  //   'Phosphate': 0.0,
+  //   'Potassium': 0.0,
+  //   'Calcium': 0.0,
+  //   'Magnesium': 0.0,
+  //   'Sulphate': 0.0,
    
-  } : widget.wA;
+  // } : widget.wA;
   }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _ConcentrationScreenState extends State<ConcentrationScreen> {
               onChanged: (newVal) {
                 
                 setState(() {
-                    wateranalysis["Volume of Water (m3)"] = newVal == null? 0.0: double.parse(newVal);
+                   conn = newVal == null ? 0.0: double.parse(newVal);
                 });
               },
               decoration: InputDecoration(
@@ -60,14 +61,9 @@ class _ConcentrationScreenState extends State<ConcentrationScreen> {
           ),
           FlatButton(
             onPressed: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ResultScreen(
-                crop: widget.crop,
-                waterAnalysis: wateranalysis,
-              );
-            })),
+                Navigator.pop(context, conn),
             child: Text(
-              "Start Growing",
+              "Proceed",
               style: TextStyle(color: Colors.black),
             ),
             shape:

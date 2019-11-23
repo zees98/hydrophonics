@@ -15,4 +15,9 @@
         "type" : "text",
         "placeholders": {}
     }
+    "startgrowing" : "البدء في النمو",
+    "@startgrowing" : {
+        "type" : "text",
+        "placeholders": {}
+    }
 }
