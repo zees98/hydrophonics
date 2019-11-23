@@ -15,6 +15,14 @@ class _SelectionScreenState extends State<SelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black.withOpacity(0),
+        title: Text("Smart Hydrophonics"),
+        actions: <Widget>[
+          Image.asset('assets/app_logo.png')
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.settings),
         onPressed: () async {
@@ -27,87 +35,105 @@ class _SelectionScreenState extends State<SelectionScreen> {
           setState(() {});
         },
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Material(
-            elevation: 3.0,
-            color: Colors.grey.shade900,
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.elliptical(790, 500),
-              topLeft: Radius.elliptical(800, 580),
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return CropScreen();
-                    })),
-                    child: Row(
+      body: Material(
+        borderRadius: BorderRadius.circular(40),
+        color: Colors.black38,
+              child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                FlatButton(
+                  color: Colors.grey.shade800,
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                    return CropScreen();
+                  })),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
                       children: <Widget>[
-                        Container(
-                          height: 150,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(24.0),
-                              child: Image.asset('assets/crops.png'),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 50,
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: Image.asset('assets/crops.png'),
                         ),
                         Text(Utils.loc.chooseCrop)
                       ],
                     ),
                   ),
-                  FlatButton(
-                    onPressed: () => Navigator.push(
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                                            child: FlatButton(
+                  onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
                           return Fertilizer();
                         },
                       ),
-                    ),
-                    child: Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(AppLocalizations.of(context).viewFertilizaer),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Container(
-                            height: 150,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Image.asset('assets/fertilizer.png'),
-                              ),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 150,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.black38),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: Image.asset('assets/fertilizer.png'),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(AppLocalizations.of(context).viewFertilizaer),
+                      ],
+                  ),
+                ),
                     ),
-                  )
-                ],
-              ),
+                Expanded(
+                                    child: FlatButton(
+                      onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Fertilizer();
+                              },
+                            ),
+                          ),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              height: 150,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.black45),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Image.asset('assets/customer-service.png'),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Text(AppLocalizations.of(context).contactUs),
+                          ])),
+                )
+                  ],
+                )
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

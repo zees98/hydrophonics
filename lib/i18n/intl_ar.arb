@@ -9,5 +9,10 @@
     "@viewFertilizaer": {
         "type": "text",
         "placeholders": {}
+    },
+    "contactUs" : "اتصل بنا",
+    "@contactUs" : {
+        "type" : "text",
+        "placeholders": {}
     }
 }

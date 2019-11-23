@@ -203,7 +203,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               DataCell(Image.asset(
                                   'assets/${chemLabels[list.indexOf(val)]}')),
                               DataCell(Text(column2[list.indexOf(val)])),
-                              DataCell(Text(val.toString())),
+                              DataCell(Text(val.toStringAsFixed(0))),
                             ]);
                           }).toList()),
                       Padding(
@@ -315,7 +315,7 @@ class TankTable extends StatelessWidget {
         }).toList(),
         rows: tankB.keys.map((f) {
           return DataRow(
-              cells: [f, tankB[f].toStringAsFixed(2)].map((f) {
+              cells: [f, tankB[f] < 0.0? "0": tankB[f].toStringAsFixed(0)].map((f) {
             return DataCell(
               Center(
                 child: Text(

@@ -27,6 +27,12 @@ class AppLocalizations {
     );
   }
 
+   String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+    );
+  }
   String get viewFertilizaer {
     return Intl.message(
       'View Fertilizers',
