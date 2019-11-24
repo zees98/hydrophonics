@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("عرض الأسمدة"),
     "contactUs" : MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "startgrowing" : MessageLookupByLibrary.simpleMessage("البدء في النمو"),
-    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("تحليل المياه"),
+    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("(PPM)تحليل المياه"),
     "concentration" : MessageLookupByLibrary.simpleMessage("عامل التركيز"),
     "missing" : MessageLookupByLibrary.simpleMessage("بيانات مفقودة"),
     "tomato" : MessageLookupByLibrary.simpleMessage("طماطم"),
@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "nitrogen" : MessageLookupByLibrary.simpleMessage("مجموع النيتروجين"),
     "phosphorus" : MessageLookupByLibrary.simpleMessage("الفوسفور"),
     "potassium" : MessageLookupByLibrary.simpleMessage("البوتاسيوم"),
+    "ammonium" : MessageLookupByLibrary.simpleMessage("غاز الأمونيا"),
+    'phosphate' : MessageLookupByLibrary.simpleMessage("فوسفات"),
     
     "calcium" : MessageLookupByLibrary.simpleMessage("الكالسيوم"),
     "magnesium" : MessageLookupByLibrary.simpleMessage("المغنسيوم"),
@@ -76,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "boric" : MessageLookupByLibrary.simpleMessage("حمض البوريك"),
     "sodMoly" : MessageLookupByLibrary.simpleMessage("موليبدات الصوديوم"),
     
+    "nitrate" : MessageLookupByLibrary.simpleMessage("نترات"),
+    "sulphate" : MessageLookupByLibrary.simpleMessage("كبريتات"),
 
     };
 }

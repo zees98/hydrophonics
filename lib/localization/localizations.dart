@@ -33,7 +33,7 @@ class AppLocalizations {
   }
 
   String get waterAnalysis {
-    return Intl.message('Water Analysis', name: 'waterAnalysis');
+    return Intl.message('Water Analysis (PPM)', name: 'waterAnalysis');
   }
 
   String get contactUs {
@@ -134,6 +134,12 @@ class AppLocalizations {
   String get nitrogen {
     return Intl.message("Nitrogen", name: 'nitrogen');
   }
+  String get ammonium {
+    return Intl.message("Ammonium", name: 'ammonium');
+  }
+  String get phosphate {
+    return Intl.message("Phosphate", name: 'phosphate');
+  }
   String get phosphorus {
     return Intl.message("Phosphorus", name: 'phosphorus');
   }
@@ -149,7 +155,12 @@ class AppLocalizations {
   String get sulphur {
     return Intl.message("Potassium", name: 'potassium');
   }
-  
+  String get nitrate {
+    return Intl.message("Nitrate", name: 'nitrate');
+  }
+  String get sulphate {
+    return Intl.message("Sulphate", name: 'sulphate');
+  }
    String get tankA {
     return Intl.message("Tank A", name: 'tankA');
   }

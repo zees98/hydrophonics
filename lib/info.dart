@@ -97,7 +97,7 @@ class _ResultScreenState extends State<ResultScreen> {
     Map<String, String> chemtrans = Translations.chemTranslation(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Optimal Conditions'),
+        title: Text('Smart Hydrophonics'),
         centerTitle: true,
       ),
       body: SafeArea(

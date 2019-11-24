@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hydrophonics/localization/localizations.dart';
 
 class ContactUS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Contact Us"),
+        title: Text(AppLocalizations.of(context).contactUs),
         centerTitle: true,
       ),
       body: SafeArea(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/concentration.dart';
+import 'package:hydrophonics/crop.dart';
 import 'package:hydrophonics/info.dart';
+import 'package:hydrophonics/localization/localizations.dart';
 
 class WaterAnalysis extends StatefulWidget {
   final String crop;
@@ -30,7 +32,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text('Water Analysis'),
+        title: Text(AppLocalizations.of(context).waterAnalysis),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -44,6 +46,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: wateranalysis.keys.map<Widget>((val) {
+                //print('$val: ${}');
                 return Padding(
                   padding:
                       const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
@@ -54,7 +57,7 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        hintText: '$val'),
+                        hintText: Translations.chemTranslation(context)[val.trim()]),
                     onChanged: (newValue) {
                       setState(() {
                         

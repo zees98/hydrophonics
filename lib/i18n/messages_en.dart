@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("View Fertilizers"),
     "contactUs" : MessageLookupByLibrary.simpleMessage("Contact Us"),
     "startgrowing" : MessageLookupByLibrary.simpleMessage("Start Growing"),
-    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("Water Analysis"),
+    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("Water Analysis (PPM)"),
     "concentration" : MessageLookupByLibrary.simpleMessage("Concentration Factor"),
     "missing" : MessageLookupByLibrary.simpleMessage("Missing Data"),
     "tomato" : MessageLookupByLibrary.simpleMessage("Tomato"),
@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "ppm" : MessageLookupByLibrary.simpleMessage("PPM"),
     "suggested" : MessageLookupByLibrary.simpleMessage("PPM"),
     "nitrogen" : MessageLookupByLibrary.simpleMessage("Nitrogen"),
+    'ammonium' : MessageLookupByLibrary.simpleMessage("Ammonium"),
+    'phosphate' : MessageLookupByLibrary.simpleMessage("Phosphate"),
     "phosphorus" : MessageLookupByLibrary.simpleMessage("Phosphorus"),
     "potassium" : MessageLookupByLibrary.simpleMessage("Potassium"),
     
@@ -76,7 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "cuEDTA" : MessageLookupByLibrary.simpleMessage("Cu EDTA 14%"),
     "boric" : MessageLookupByLibrary.simpleMessage("Boric Acid"),
     "sodMoly" : MessageLookupByLibrary.simpleMessage("Sodium Molybdate"),
-    
+    "nitrate" : MessageLookupByLibrary.simpleMessage("Nitrate"),
+    "sulphate" : MessageLookupByLibrary.simpleMessage("Sulphate"),
 
   };
 }

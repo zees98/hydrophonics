@@ -109,6 +109,11 @@ class Translations {
       'Calcium': AppLocalizations.of(context).calcium,
       'Magnesium': AppLocalizations.of(context).magnesium,
       'Sulphur': AppLocalizations.of(context).sulphur,
+      'Ammonium' : AppLocalizations.of(context).ammonium,
+      'Nitrate' : AppLocalizations.of(context).nitrate,
+      'Sulphate' : AppLocalizations.of(context).sulphate,
+      'Phosphate' : AppLocalizations.of(context).phosphate
+      
     };
   }
 

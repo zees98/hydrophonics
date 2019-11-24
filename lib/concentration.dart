@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/info.dart';
+import 'package:hydrophonics/localization/localizations.dart';
 import 'package:hydrophonics/water.dart';
 
 class ConcentrationScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ConcentrationScreenState extends State<ConcentrationScreen> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text("Concentration Factor"),
+        title: Text(AppLocalizations.of(context).concentration),
         centerTitle: true,
       ),
       body: Column(
