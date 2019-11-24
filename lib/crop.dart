@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/concentration.dart';
+import 'package:hydrophonics/localization/localizations.dart';
 import 'package:hydrophonics/water.dart';
 import 'constants.dart';
 
@@ -10,14 +11,16 @@ class CropScreen extends StatefulWidget {
 }
 
 class _CropScreenState extends State<CropScreen> {
+  
   @override
   Widget build(BuildContext context) {
+    Map<String, String> locales = Translations.locale(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.pop(context)),
-        title: Text('Select a Crop'),
+        title: Text(AppLocalizations.of(context).selectACrop),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -43,7 +46,7 @@ class _CropScreenState extends State<CropScreen> {
                       SizedBox(
                         height: 20,
                       ),
-                      Expanded(child: Text(val))
+                      Expanded(child: Text(locales[val]))
                     ],
                   ),
                 );
@@ -91,4 +94,39 @@ class _CropScreenState extends State<CropScreen> {
                         );
                       });
   }
+}
+class Translations{
+ static Map<String, String> chemTranslation(BuildContext context){
+   return {
+     'Lightning Hours' : AppLocalizations.of(context).light, 
+     'Humidity' : AppLocalizations.of(context).humid,
+     'Temperature' : AppLocalizations.of(context).temperature, 
+     'pH' : AppLocalizations.of(context).ph,
+     'EC' : AppLocalizations.of(context).ec, 
+     'PPM' : AppLocalizations.of(context).ppm,
+  
+     'Nitrogen' : AppLocalizations.of(context).nitrogen,
+     'Phosphorus' : AppLocalizations.of(context).phosphorus, 
+     'Potassium' : AppLocalizations.of(context).potassium,
+     'Calcium' : AppLocalizations.of(context).calcium, 
+     'Magnesium' : AppLocalizations.of(context).magnesium,
+     'Sulphur' : AppLocalizations.of(context).sulphur,
+   };
+ }
+ static Map<String, String> locale(BuildContext context){
+  return { 
+    "Tomato" : AppLocalizations.of(context).tomato,
+    "Lettuce" : AppLocalizations.of(context).lettuce,
+    "Basil" : AppLocalizations.of(context).basil,
+    "Cucumber" : AppLocalizations.of(context).cucumber,
+    "Pepper" : AppLocalizations.of(context).pepper,
+    "Strawberry" : AppLocalizations.of(context).strawberry,
+    "Roses" : AppLocalizations.of(context).roses,
+    "Melon" : AppLocalizations.of(context).melon,
+    "Spinach" : AppLocalizations.of(context).spinach,
+    "Herbs" : AppLocalizations.of(context).herbs,
+    
+  };
+}
+
 }

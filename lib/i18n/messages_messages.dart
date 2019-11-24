@@ -25,6 +25,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("View Fertilizers"),
     "contactUs" : MessageLookupByLibrary.simpleMessage("ContactUs"),
     "startGrowing" : MessageLookupByLibrary.simpleMessage("Start Growing"),
-    
+    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("Water Analysis"),
   };
 }

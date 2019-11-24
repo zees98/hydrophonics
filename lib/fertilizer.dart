@@ -152,7 +152,7 @@ class FertilizerTable extends StatelessWidget {
           rows: map.keys.toList().map((val) {
             return DataRow(
                 cells: [
-              Image.asset('assets/${val.trim()}.png'),
+              Image.asset('assets/fertilizer/${val.trim().replaceAll(" ", "")}.png'),
               Text(val),
               Text(map[val])
             ].map((val) {

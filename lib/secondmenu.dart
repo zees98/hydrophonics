@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hydrophonics/concentration.dart';
 import 'package:hydrophonics/crop.dart';
 import 'package:hydrophonics/info.dart';
+import 'package:hydrophonics/localization/localizations.dart';
+import 'package:hydrophonics/main.dart';
 import 'package:hydrophonics/water.dart';
 
 class SecondMenu extends StatefulWidget {
@@ -38,15 +40,13 @@ class _SecondMenuState extends State<SecondMenu> {
                   padding: EdgeInsets.all(20),
                   child: ListTile(
                     onTap: () async {
-                      crop = await Navigator.push(context, MaterialPageRoute(
-                        builder: (context){
-                          return CropScreen();
-                        }
-                        
-                      ));
+                      crop = await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return CropScreen();
+                      }));
                       print(crop);
                     },
-                    title: Text("Choose Crop"),
+                    title: Text(AppLocalizations.of(context).chooseCrop),
                     trailing: Image.asset("assets/crops.png"),
                   ),
                 ),
@@ -56,19 +56,18 @@ class _SecondMenuState extends State<SecondMenu> {
                       border: Border.all(color: Colors.white)),
                   padding: EdgeInsets.all(20),
                   child: ListTile(
-                    onTap: () async{
-                     wA = await  Navigator.push(context, MaterialPageRoute(
-                        builder: (context){
-                          return WaterAnalysis();
-                        }
-                      
-                      ));
-                     if(wA != null) wA.forEach((k,v){
-                        print("$k : $v");
-                      });
+                    onTap: () async {
+                      wA = await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return WaterAnalysis();
+                      }));
+                      if (wA != null)
+                        wA.forEach((k, v) {
+                          print("$k : $v");
+                        });
                     },
-                    title: Text("Water Analysis"),
-                    trailing: Image.asset("assets/drops.png"),
+                    title: Text(AppLocalizations.of(context).waterAnalysis),
+                    trailing: Image.asset("assets/drop.png"),
                   ),
                 ),
                 Container(
@@ -77,40 +76,59 @@ class _SecondMenuState extends State<SecondMenu> {
                       border: Border.all(color: Colors.white)),
                   padding: EdgeInsets.all(20),
                   child: ListTile(
-                    onTap: () async{
-                       conn = await  Navigator.push(context, MaterialPageRoute(
-                        builder: (context){
-                          return ConcentrationScreen();
-                        }
-                      
-                      ));
+                    onTap: () async {
+                      conn = await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ConcentrationScreen();
+                      }));
                       print(conn);
                     },
-                    title: Text("Concentration Factor"),
-                    trailing: Image.asset("assets/crops.png"),
+                    title: Text(AppLocalizations.of(context).concentration),
+                    trailing: Image.asset("assets/test-tube.png"),
                   ),
                 )
               ],
             ),
             Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: FlatButton(
-                onPressed: (conn != null && wA != null && conn != null)?() => Navigator.push(context, MaterialPageRoute(
-                  builder: (context){
-                    return ResultScreen(
-                      crop: crop,
-                      waterAnalysis: wA,
-                      concentration: conn == null? 0.0 : conn,
-                    );
-                  }
-                )): () {},
-                
-                color: Colors.green,
-                shape: RoundedRectangleBorder(borderRadius: radius),
-                child: Text("Start Growing",
-                    style: TextStyle(color: Colors.black)),
-              )
-            )
+                alignment: AlignmentDirectional.bottomCenter,
+                child: FlatButton(
+                  onPressed: (conn != null && crop != null)
+                      ? () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ResultScreen(
+                              crop: crop,
+                              waterAnalysis: wA,
+                              concentration: conn == null ? 0.0 : conn,
+                            );
+                          }))
+                      : () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Missing data"),
+                                  content: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          "Crop (Required)\n\nWater Analysis (Optional) \n\nConcentration Factor (Required)"),
+                                    ),
+                                  actions: <Widget>[
+                                    MaterialButton(
+                                      shape: RoundedRectangleBorder(borderRadius: radius),
+                                      color: Colors.black54,
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text("OK"),
+                                    )
+                                  ],
+                                    
+                                );
+                              });
+                        },
+                  color: Colors.green,
+                  shape: RoundedRectangleBorder(borderRadius: radius),
+                  child: Text("Start Growing",
+                      style: TextStyle(color: Colors.black)),
+                ))
           ],
         ),
       ),

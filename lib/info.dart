@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonics/constants.dart';
+import 'package:hydrophonics/crop.dart';
+import 'package:hydrophonics/localization/localizations.dart';
+import 'package:hydrophonics/main.dart';
 import 'package:hydrophonics/water.dart';
 import 'dart:math' as Math;
 
@@ -91,6 +94,7 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(fontSize: 20, fontFamily: 'OpenSans');
+    Map<String, String> chemtrans = Translations.chemTranslation(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Optimal Conditions'),
@@ -107,7 +111,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 children: <Widget>[
                   Expanded(
                       child: Text(
-                    widget.crop,
+                   Translations.locale(context)[crop],
                     style: TextStyle(fontSize: 50, fontFamily: 'OpenSans'),
                     textAlign: TextAlign.start,
                   )),
@@ -135,7 +139,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 label: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(val),
+                                Text(chemtrans[val]),
                                 Image.asset(
                                   'assets/${icons[imgIndex]}',
                                   height: 25,
@@ -158,14 +162,14 @@ class _ResultScreenState extends State<ResultScreen> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
-                            columnSpacing:
-                                MediaQuery.of(context).size.width * 0.2,
+                            columnSpacing: 
+                                MediaQuery.of(context).size.width / 5,
                             columns: coulmn1.map((val) {
                               return DataColumn(
                                   label: Center(
                                 child: Row(
                                   children: <Widget>[
-                                    Text(val),
+                                    Text(chemtrans[val]),
                                     Image.asset(
                                       'assets/${images1[coulmn1.indexOf(val)]}',
                                       height: 25,
@@ -185,7 +189,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Text(
-                          'Suggested Nutrient Solution (PPM)',
+                          AppLocalizations.of(context).suggested,
                           style: textStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -203,14 +207,14 @@ class _ResultScreenState extends State<ResultScreen> {
                             return DataRow(cells: [
                               DataCell(Image.asset(
                                   'assets/${chemLabels[list.indexOf(val)]}')),
-                              DataCell(Text(column2[list.indexOf(val)])),
+                              DataCell(Text(chemtrans[column2[list.indexOf(val)]])),
                               DataCell(Text(val.toStringAsFixed(0))),
                             ]);
                           }).toList()),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Tank A",
+                          AppLocalizations.of(context).tankA,
                           textAlign: TextAlign.center,
                           style: textStyle.copyWith(fontSize: 24),
                         ),
@@ -221,7 +225,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Tank B",
+                          AppLocalizations.of(context).tankB,
                           textAlign: TextAlign.center,
                           style: textStyle.copyWith(fontSize: 24),
                         ),
@@ -311,9 +315,10 @@ class TankTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
+      
         horizontalMargin: 0.0,
         columns: ['Fertilizer', 'Quantity (gram)'].map((f) {
-          return DataColumn(label: Center(child: Text(f)));
+          return DataColumn(label: Text(f, textAlign: TextAlign.center,));
         }).toList(),
         rows: tankB.keys.map((f) {
           return DataRow(

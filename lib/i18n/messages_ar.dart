@@ -25,7 +25,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("عرض الأسمدة"),
     "contactUs" : MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "startgrowing" : MessageLookupByLibrary.simpleMessage("البدء في النمو"),
+    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("تحليل المياه"),
+    "concentration" : MessageLookupByLibrary.simpleMessage("عامل التركيز"),
+    "missing" : MessageLookupByLibrary.simpleMessage("بيانات مفقودة"),
+    "tomato" : MessageLookupByLibrary.simpleMessage("طماطم"),
+    "lettuce" : MessageLookupByLibrary.simpleMessage("الخس"),
+    "basil" : MessageLookupByLibrary.simpleMessage("ريحان"),
+    "pepper" : MessageLookupByLibrary.simpleMessage("فلفل"),
+    "strawberry" : MessageLookupByLibrary.simpleMessage("الفراولة"),
+    "roses" : MessageLookupByLibrary.simpleMessage("ورود"),
+    "melon" : MessageLookupByLibrary.simpleMessage("شمام"),
+    "spinach" : MessageLookupByLibrary.simpleMessage("سبانخ"),
+    "herbs" : MessageLookupByLibrary.simpleMessage("أعشاب"),
+    "cucumber" : MessageLookupByLibrary.simpleMessage("خيار"),
+
+    "light" : MessageLookupByLibrary.simpleMessage("عدد ساعات الإضاءة"),
+    "humid" : MessageLookupByLibrary.simpleMessage("نسبة الرطوبة (%)"),
+    "temperature" : MessageLookupByLibrary.simpleMessage("درجة الحرارة (مئوية)"),
+    "ph" : MessageLookupByLibrary.simpleMessage("رقم الحموضة"),
+    "ec" : MessageLookupByLibrary.simpleMessage("الناقلية الكهربائية"),
+    "ppm" : MessageLookupByLibrary.simpleMessage("التركيز الكلي (PPM)"),
+    "suggested" : MessageLookupByLibrary.simpleMessage("نسبة العناصر المقترحة للمحلول المغذي (PPM)"),
+    "nitrogen" : MessageLookupByLibrary.simpleMessage("مجموع النيتروجين"),
+    "phosphorus" : MessageLookupByLibrary.simpleMessage("الفوسفور"),
+    "potassium" : MessageLookupByLibrary.simpleMessage("البوتاسيوم"),
     
-    
-  };
+    "calcium" : MessageLookupByLibrary.simpleMessage("الكالسيوم"),
+    "magnesium" : MessageLookupByLibrary.simpleMessage("المغنسيوم"),
+    "sulphur" : MessageLookupByLibrary.simpleMessage("الكبريت"),
+
+    "tankA" : MessageLookupByLibrary.simpleMessage("الخزان A"),
+    "tankB" : MessageLookupByLibrary.simpleMessage("الخزان B"),
+    };
 }
+
+
+
+
+

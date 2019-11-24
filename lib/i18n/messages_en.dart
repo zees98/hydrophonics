@@ -25,6 +25,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewFertilizaer" : MessageLookupByLibrary.simpleMessage("View Fertilizers"),
     "contactUs" : MessageLookupByLibrary.simpleMessage("Contact Us"),
     "startgrowing" : MessageLookupByLibrary.simpleMessage("Start Growing"),
+    "waterAnalysis" : MessageLookupByLibrary.simpleMessage("Water Analysis"),
+    "concentration" : MessageLookupByLibrary.simpleMessage("Concentration Factor"),
+    "missing" : MessageLookupByLibrary.simpleMessage("Missing Data"),
+    "tomato" : MessageLookupByLibrary.simpleMessage("Tomato"),
+    "lettuce" : MessageLookupByLibrary.simpleMessage("lettuce"),
+    "basil" : MessageLookupByLibrary.simpleMessage("Basil"),
+    "pepper" : MessageLookupByLibrary.simpleMessage("Pepper"),
+    "strawberry" : MessageLookupByLibrary.simpleMessage("Strawberry"),
+    "roses" : MessageLookupByLibrary.simpleMessage("Roses"),
+    "melon" : MessageLookupByLibrary.simpleMessage("Melon"),
+    "spinach" : MessageLookupByLibrary.simpleMessage("Spinach"),
+    "herbs" : MessageLookupByLibrary.simpleMessage("Herbs"),
+    "cucumber" : MessageLookupByLibrary.simpleMessage("Cucumber"),
+
+
+    "light" : MessageLookupByLibrary.simpleMessage("Lightning Hours"),
+    "humid" : MessageLookupByLibrary.simpleMessage("Humidity"),
+    "temperature" : MessageLookupByLibrary.simpleMessage("Temperature"),
+    "ph" : MessageLookupByLibrary.simpleMessage("pH"),
+    "ec" : MessageLookupByLibrary.simpleMessage("EC"),
+    "ppm" : MessageLookupByLibrary.simpleMessage("PPM"),
+    "suggested" : MessageLookupByLibrary.simpleMessage("PPM"),
+    "nitrogen" : MessageLookupByLibrary.simpleMessage("Nitrogen"),
+    "phosphorus" : MessageLookupByLibrary.simpleMessage("Phosphorus"),
+    "potassium" : MessageLookupByLibrary.simpleMessage("Potassium"),
     
+    "calcium" : MessageLookupByLibrary.simpleMessage("Calcium"),
+    "magnesium" : MessageLookupByLibrary.simpleMessage("Magnesium"),
+    "sulphur" : MessageLookupByLibrary.simpleMessage("Sulphur"),
+    
+     "tankA" : MessageLookupByLibrary.simpleMessage("Tank A"),
+    "tankB" : MessageLookupByLibrary.simpleMessage("Tank B"),
   };
 }
