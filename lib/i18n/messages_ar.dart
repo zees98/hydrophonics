@@ -56,6 +56,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
     "tankA" : MessageLookupByLibrary.simpleMessage("الخزان A"),
     "tankB" : MessageLookupByLibrary.simpleMessage("الخزان B"),
+ 
+    "fertilizer" : MessageLookupByLibrary.simpleMessage("السماد"),
+    "quantity" : MessageLookupByLibrary.simpleMessage( "(الكمية (غرام"),
+
+    "calNitrate" : MessageLookupByLibrary.simpleMessage("نترات الكالسيوم"),
+    "potNitrate" : MessageLookupByLibrary.simpleMessage("نترات البوتاسيوم"),
+    "feEDTA" : MessageLookupByLibrary.simpleMessage("حديد مخلب EDTA13%"),
+    
+     "potSulphate" : MessageLookupByLibrary.simpleMessage("كبريتات البوتاسيوم"),
+    "magSulphate" : MessageLookupByLibrary.simpleMessage("كبريتات المغنسيوم"),
+
+    "monoPotPhosphate" : MessageLookupByLibrary.simpleMessage("أحادي فوسفات البوتاسيوم (MKP)"),
+    "ammoSulphate" : MessageLookupByLibrary.simpleMessage("كبريتات الأمونيوم"),
+
+    "mnEDTA" : MessageLookupByLibrary.simpleMessage("منغنيز مخلب  EDTA13%"),
+    "znEDTA" : MessageLookupByLibrary.simpleMessage("زنك مخلب EDTA 15%"),
+    "cuEDTA" : MessageLookupByLibrary.simpleMessage("نحاس مخلب EDTA 14%"),
+    "boric" : MessageLookupByLibrary.simpleMessage("حمض البوريك"),
+    "sodMoly" : MessageLookupByLibrary.simpleMessage("موليبدات الصوديوم"),
+    
+
     };
 }
 

@@ -156,6 +156,51 @@ class AppLocalizations {
   String get tankB {
     return Intl.message("Tank B", name: 'tankB');
   }
+  String get fertilizer {
+    return Intl.message("Fertilizer", name: 'fertilizer');
+  }
+  String get quantity {
+    return Intl.message("Quantity", name: 'quantity');
+  }
+  String get calNitrate {
+    return Intl.message("Calcium Nitrate", name: 'calNitrate');
+  }
+  String get potNitrate {
+    return Intl.message("Potassium Nitrate", name: 'potNitrate');
+  }
+  String get feEDTA {
+    return Intl.message("Fe EDTA 13%", name: 'feEDTA');
+  }
+  String get potSulphate {
+    return Intl.message("Potassium Sulphate", name: 'potSulphate');
+  }
+  String get magSulphate {
+    return Intl.message("Magnesium Sulphate", name: 'magSulphate');
+  }
+  String get monoPotPhosphate {
+    return Intl.message("Mono Potassium Phosphate", name: 'monoPotPhosphate');
+  }
+  String get ammoSulphate {
+    return Intl.message("Ammonium Phosphate", name: 'ammoSulphate');
+  }
+  String get mnEDTA {
+    return Intl.message("Mn EDTA 13%", name: 'mnEDTA');
+  }
+  String get znEDTA {
+    return Intl.message("Zn EDTA 15%", name: 'znEDTA');
+  }
+  String get cuEDTA {
+    return Intl.message("Cu EDTA 14%", name: 'cuEDTA');
+  }
+  
+  String get boric {
+    return Intl.message("Boric Acid", name: 'boric');
+  }
+  String get sodMoly {
+    return Intl.message("Sodium Molybdate", name: 'sodMoly');
+  }
+  
+  
   
 }
 

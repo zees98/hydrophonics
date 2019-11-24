@@ -57,5 +57,26 @@ class MessageLookup extends MessageLookupByLibrary {
     
      "tankA" : MessageLookupByLibrary.simpleMessage("Tank A"),
     "tankB" : MessageLookupByLibrary.simpleMessage("Tank B"),
+
+    "fertilizer" : MessageLookupByLibrary.simpleMessage("Fertilizer"),
+    "quantity" : MessageLookupByLibrary.simpleMessage( "Quantity"),
+////////////////////////////////////////////////////////////////////////////
+    "calNitrate" : MessageLookupByLibrary.simpleMessage("Calcium Nitrate (15-0-0)"),
+    "potNitrate" : MessageLookupByLibrary.simpleMessage("Potassium Nitrate (13-0-46)"),
+    "feDTA" : MessageLookupByLibrary.simpleMessage("Fe EDTA 13%"),
+    
+     "potSulphate" : MessageLookupByLibrary.simpleMessage("Potassium Sulphate (0-0-50)"),
+    "magSulphate" : MessageLookupByLibrary.simpleMessage("Magnesium Sulphate"),
+
+    "monoPotPhosphate" : MessageLookupByLibrary.simpleMessage("Mono Potassium Phosphate (0-52-34)"),
+    "ammoSulphate" : MessageLookupByLibrary.simpleMessage( "Ammonium Sulphate (21-0-0)"),
+
+    "mnEDTA" : MessageLookupByLibrary.simpleMessage("Mn EDTA 13%"),
+    "znEDTA" : MessageLookupByLibrary.simpleMessage("Zn EDTA 15%"),
+    "cuEDTA" : MessageLookupByLibrary.simpleMessage("Cu EDTA 14%"),
+    "boric" : MessageLookupByLibrary.simpleMessage("Boric Acid"),
+    "sodMoly" : MessageLookupByLibrary.simpleMessage("Sodium Molybdate"),
+    
+
   };
 }

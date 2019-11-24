@@ -77,12 +77,12 @@ class _ResultScreenState extends State<ResultScreen> {
         'Potassium Nitrate (13-0-46)': res["Potassium Nitrate"] / 2,
         'Potassium Sulphate (0-0-50)': res['Potassium Sulfate'],
         'Magnesium Sulphate': res['Magnesium Sulphate'],
-        'Mono Potassium Phosphate \n(0-52-34)': res['Mono Potassium Phosphate'],
+        'Mono Potassium Phosphate (0-52-34)': res['Mono Potassium Phosphate'],
         'Ammonium Sulphate (21-0-0)': res["Ammonium Sulphate"],
         'Mn EDTA 13%': 7.7 * widget.concentration,
-        'Zn ETDA 15%': 2.0 * widget.concentration,
-        'Cu EDTA 14%	': 1.0 * widget.concentration,
-        'Boric Acid	': 2.9 * widget.concentration,
+        'Zn EDTA 15%': 2.0 * widget.concentration,
+        'Cu EDTA 14%': 1.0 * widget.concentration,
+        'Boric Acid': 2.9 * widget.concentration,
         'Sodium Molybdate': 0.3 * widget.concentration
       };
     });
@@ -314,15 +314,18 @@ class TankTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> tanktrans = Translations.tankTranslate(context);
+
     return DataTable(
       
         horizontalMargin: 0.0,
-        columns: ['Fertilizer', 'Quantity (gram)'].map((f) {
+        columns: [AppLocalizations.of(context).fertilizer, AppLocalizations.of(context).quantity].map((f) {
           return DataColumn(label: Text(f, textAlign: TextAlign.center,));
         }).toList(),
         rows: tankB.keys.map((f) {
+         
           return DataRow(
-              cells: [f, tankB[f] < 0.0? "0": tankB[f].toStringAsFixed(0)].map((f) {
+              cells: [tanktrans[f.trim()], tankB[f] < 0.0? "0": tankB[f].toStringAsFixed(0)].map((f) {
             return DataCell(
               Center(
                 child: Text(
