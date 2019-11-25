@@ -105,15 +105,15 @@ class AppLocalizations {
   }
 
   String get light {
-    return Intl.message("Lightning Hours", name: 'light');
+    return Intl.message("Lightning \nhours", name: 'light');
   }
 
   String get humid {
-    return Intl.message("Humidity", name: 'humid');
+    return Intl.message("Humidity \n%", name: 'humid');
   }
 
   String get temperature {
-    return Intl.message("Temperature", name: 'temperature');
+    return Intl.message("Temperature \n°C", name: 'temperature');
   }
 
   String get ph {
@@ -121,15 +121,15 @@ class AppLocalizations {
   }
 
   String get ec {
-    return Intl.message("EC", name: 'ec');
+    return Intl.message("EC\nms\\cm", name: 'ec');
   }
 
   String get ppm {
-    return Intl.message("PPM", name: 'ppm');
+    return Intl.message("TDS \nPPM", name: 'ppm');
   }
   
   String get suggested {
-    return Intl.message("Suggested Nutrient Solution", name: 'suggested');
+    return Intl.message("Suggested Nutrient Solution (PPM)", name: 'suggested');
   }
   String get nitrogen {
     return Intl.message("Nitrogen", name: 'nitrogen');
@@ -147,13 +147,13 @@ class AppLocalizations {
     return Intl.message("Potassium", name: 'potassium');
   }
   String get calcium {
-    return Intl.message("Nitrogen", name: 'nitrogen');
+    return Intl.message("Calcium", name: 'calcium');
   }
   String get magnesium {
-    return Intl.message("Phosphorus", name: 'phosphorus');
+    return Intl.message("Magnesium", name: 'magnesium');
   }
   String get sulphur {
-    return Intl.message("Potassium", name: 'potassium');
+    return Intl.message("Sulphur", name: 'sulphur');
   }
   String get nitrate {
     return Intl.message("Nitrate", name: 'nitrate');
@@ -171,7 +171,7 @@ class AppLocalizations {
     return Intl.message("Fertilizer", name: 'fertilizer');
   }
   String get quantity {
-    return Intl.message("Quantity", name: 'quantity');
+    return Intl.message("Quantity \ngram", name: 'quantity');
   }
   String get calNitrate {
     return Intl.message("Calcium Nitrate", name: 'calNitrate');

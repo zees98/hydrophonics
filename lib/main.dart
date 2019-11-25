@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrophonics/localization/localizations.dart';
 //import 'package:hydrophonics/message.dart';
 import 'package:hydrophonics/selection.dart';
+import 'package:hydrophonics/sizeconfig.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils {
@@ -55,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     Utils.loc = AppLocalizations.of(context);
     return Scaffold(
         body: SafeArea(

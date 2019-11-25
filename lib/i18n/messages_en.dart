@@ -40,13 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "cucumber" : MessageLookupByLibrary.simpleMessage("Cucumber"),
 
 
-    "light" : MessageLookupByLibrary.simpleMessage("Lightning Hours"),
-    "humid" : MessageLookupByLibrary.simpleMessage("Humidity"),
-    "temperature" : MessageLookupByLibrary.simpleMessage("Temperature"),
+    "light" : MessageLookupByLibrary.simpleMessage("Lightning \nhours"),
+    "humid" : MessageLookupByLibrary.simpleMessage("Humidity \n%"),
+    "temperature" : MessageLookupByLibrary.simpleMessage("Temperature \n°C"),
     "ph" : MessageLookupByLibrary.simpleMessage("pH"),
-    "ec" : MessageLookupByLibrary.simpleMessage("EC"),
-    "ppm" : MessageLookupByLibrary.simpleMessage("PPM"),
-    "suggested" : MessageLookupByLibrary.simpleMessage("PPM"),
+    "ec" : MessageLookupByLibrary.simpleMessage("EC\nms\\cm"),
+    "ppm" : MessageLookupByLibrary.simpleMessage("TDS\nPPM"),
+    "suggested" : MessageLookupByLibrary.simpleMessage("Suggested Nutrient Solutions (PPM)"),
     "nitrogen" : MessageLookupByLibrary.simpleMessage("Nitrogen"),
     'ammonium' : MessageLookupByLibrary.simpleMessage("Ammonium"),
     'phosphate' : MessageLookupByLibrary.simpleMessage("Phosphate"),
@@ -61,7 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tankB" : MessageLookupByLibrary.simpleMessage("Tank B"),
 
     "fertilizer" : MessageLookupByLibrary.simpleMessage("Fertilizer"),
-    "quantity" : MessageLookupByLibrary.simpleMessage( "Quantity"),
+    "quantity" : MessageLookupByLibrary.simpleMessage( "Quantity \ngram"),
 ////////////////////////////////////////////////////////////////////////////
     "calNitrate" : MessageLookupByLibrary.simpleMessage("Calcium Nitrate (15-0-0)"),
     "potNitrate" : MessageLookupByLibrary.simpleMessage("Potassium Nitrate (13-0-46)"),

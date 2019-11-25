@@ -3,6 +3,7 @@ import 'package:hydrophonics/constants.dart';
 import 'package:hydrophonics/crop.dart';
 import 'package:hydrophonics/localization/localizations.dart';
 import 'package:hydrophonics/main.dart';
+import 'package:hydrophonics/sizeconfig.dart';
 import 'package:hydrophonics/water.dart';
 import 'dart:math' as Math;
 
@@ -93,12 +94,16 @@ class _ResultScreenState extends State<ResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     var textStyle = TextStyle(fontSize: 20, fontFamily: 'OpenSans');
     Map<String, String> chemtrans = Translations.chemTranslation(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Smart Hydrophonics'),
         centerTitle: true,
+        actions: <Widget>[
+          Image.asset("assets/app_logo.png")
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -131,7 +136,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
-                          columnSpacing: 28.0,
+                          columnSpacing: SizeConfig.screenWidth * 0.1,
                           horizontalMargin: 1,
                           columns: columns.map<DataColumn>((val) {
                             int imgIndex = columns.indexOf(val);
@@ -139,7 +144,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 label: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(chemtrans[val]),
+                                Text(chemtrans[val], textAlign: TextAlign.center,),
                                 Image.asset(
                                   'assets/${icons[imgIndex]}',
                                   height: 25,
@@ -154,7 +159,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               optimalEnv[crop][1],
                               optimalEnv[crop][2]
                             ].map((val) {
-                              return DataCell(Center(child: Text(val)));
+                              return DataCell(Center(child: Text(val, textAlign: TextAlign.center,)));
                             }).toList())
                           ],
                         ),
@@ -163,7 +168,8 @@ class _ResultScreenState extends State<ResultScreen> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                             columnSpacing: 
-                                MediaQuery.of(context).size.width / 5,
+                                SizeConfig.screenWidth * 0.22,
+                            horizontalMargin: 1,
                             columns: coulmn1.map((val) {
                               return DataColumn(
                                   label: Center(

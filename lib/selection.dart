@@ -7,6 +7,7 @@ import 'package:hydrophonics/fertilizer.dart';
 import 'package:hydrophonics/localization/localizations.dart';
 import 'package:hydrophonics/main.dart';
 import 'package:hydrophonics/secondmenu.dart';
+import 'package:hydrophonics/sizeconfig.dart';
 
 class SelectionScreen extends StatefulWidget {
   @override
@@ -16,16 +17,17 @@ class SelectionScreen extends StatefulWidget {
 class _SelectionScreenState extends State<SelectionScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-       
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.pop(context),
+        ),
         centerTitle: true,
-        
         title: Text("Smart Hydrophonics"),
         actions: <Widget>[
-          Hero(
-            tag: "logo",
-            child: Image.asset('assets/app_logo.png'))
+          Hero(tag: "logo", child: Image.asset('assets/app_logo.png'))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -40,105 +42,115 @@ class _SelectionScreenState extends State<SelectionScreen> {
           setState(() {});
         },
       ),
-      body: Material(
-        borderRadius: BorderRadius.circular(40),
-        color: Colors.black38,
-              child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                FlatButton(
-                  color: Colors.grey.shade800,
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                    return SecondMenu();
-                  })),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Image.asset('assets/crops.png'),
-                        ),
-                        Text(AppLocalizations.of(context).startgrowing)
-                      ],
-                    ),
-                  ),
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                                            child: FlatButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Fertilizer();
-                        },
-                      ),
-                  ),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          height: 150,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black38),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(24.0),
-                              child: Image.asset('assets/fertilizer.png'),
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SecondMenu();
+                    })),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Image.asset(
+                              'assets/crops.png',
+                              height: SizeConfig.screenHeight * 0.2,
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(AppLocalizations.of(context).viewFertilizaer),
-                      ],
-                  ),
-                ),
+                          Text(AppLocalizations.of(context).startgrowing)
+                        ],
+                      ),
                     ),
-                Expanded(
-                                    child: FlatButton(
-                      onPressed: () => Navigator.push(
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: FlatButton(
+                          onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ContactUS();
+                                return Fertilizer();
                               },
                             ),
                           ),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Container(
-                              height: 150,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.black45),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(24.0),
-                                  child: Image.asset('assets/customer-service.png'),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                height: (150/ 774) * SizeConfig.screenHeight,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.black38),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(24.0),
+                                    child: Image.asset('assets/fertilizer.png'),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Text(AppLocalizations.of(context).contactUs),
-                          ])),
-                )
-                  ],
-                )
-              ],
+                              SizedBox(
+                                height: (30/ 774) * SizeConfig.screenHeight,
+                              ),
+                              Text(
+                                  AppLocalizations.of(context).viewFertilizaer),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: FlatButton(
+                            onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return ContactUS();
+                                    },
+                                  ),
+                                ),
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    height: (150/ 774) * SizeConfig.screenHeight,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black45),
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(24.0),
+                                        child: Image.asset(
+                                            'assets/customer-service.png'),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: (30/ 774) * SizeConfig.screenHeight,
+                                  ),
+                                  Text(AppLocalizations.of(context).contactUs),
+                                ])),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: Text('www.basilGarden.net'))
+        ],
       ),
     );
   }
@@ -168,7 +180,7 @@ class _AlertBoxState extends State<AlertBox> {
                   Utils.prefs.getString("lang") == "en" ? "Arabic" : "English"),
               Switch(
                 activeColor: Colors.blue,
-                value:  Utils.prefs.getString("lang") == 'en' ? true: false,
+                value: Utils.prefs.getString("lang") == 'en' ? true : false,
                 onChanged: (val) {
                   setState(() {
                     String lang = Utils.prefs.getString("lang") ?? "en";
