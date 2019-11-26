@@ -73,24 +73,33 @@ class _FertilizerState extends State<Fertilizer> {
         ),
         title: Text('Fertilizers'),
         centerTitle: true,
+        actions: <Widget>[Image.asset("assets/app_logo.png")],
       ),
       body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
-              children: <Widget>[
-                ExTile(title: 'Calcium Nitrate', map: calciumNitrate),
-                ExTile(title: 'Ammonium Sulphate', map: ammoniumSulphate),
-                ExTile(
-                    title: 'Magnesium Sulphate (Heptahydrate)',
-                    map: mgSulphate),
-                ExTile(
-                    title: 'Mono Potassium Phosphate',
-                    map: monoPotassiumPhosphate),
-                ExTile(title: 'Potassium Nitrate', map: potassiumNitrate),
-                ExTile(title: 'Potassium Sulphate', map: potassiumSulphate)
-              ],
-            )),
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  children: <Widget>[
+                    ExTile(title: 'Calcium Nitrate', map: calciumNitrate),
+                    ExTile(title: 'Ammonium Sulphate', map: ammoniumSulphate),
+                    ExTile(
+                        title: 'Magnesium Sulphate (Heptahydrate)',
+                        map: mgSulphate),
+                    ExTile(
+                        title: 'Mono Potassium Phosphate',
+                        map: monoPotassiumPhosphate),
+                    ExTile(title: 'Potassium Nitrate', map: potassiumNitrate),
+                    ExTile(title: 'Potassium Sulphate', map: potassiumSulphate)
+                  ],
+                )),
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: Text("www.BasilGarden.net")),
+          ],
+        ),
       ),
     );
   }
@@ -152,7 +161,8 @@ class FertilizerTable extends StatelessWidget {
           rows: map.keys.toList().map((val) {
             return DataRow(
                 cells: [
-              Image.asset('assets/fertilizer/${val.trim().replaceAll(" ", "")}.png'),
+              Image.asset(
+                  'assets/fertilizer/${val.trim().replaceAll(" ", "")}.png'),
               Text(val),
               Text(map[val])
             ].map((val) {
