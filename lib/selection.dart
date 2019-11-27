@@ -18,56 +18,67 @@ class _SelectionScreenState extends State<SelectionScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context),
-        ),
-        centerTitle: true,
-        title: Text("Smart Hydrophonics"),
-        actions: <Widget>[
-          Hero(tag: "logo", child: Image.asset('assets/app_logo.png'))
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.settings),
-        onPressed: () async {
-          await showDialog(
-              context: context,
-              builder: (context) {
-                return AlertBox();
-              });
-
-          setState(() {});
-        },
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return SecondMenu();
-                    })),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Image.asset(
-                              'assets/crops.png',
-                              height: SizeConfig.screenHeight * 0.2,
-                            ),
-                          ),
-                          Text(AppLocalizations.of(context).startgrowing)
+    var textStyle = TextStyle(fontSize: (16/ 411 ) * SizeConfig.screenWidth );
+        return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context){
+                  return SplashScreen();
+                }
+              )),
+            ),
+            centerTitle: true,
+            title: Text("Smart Hydrophonics"),
+            actions: <Widget>[
+              Hero(tag: "logo", child: Image.asset('assets/app_logo.png'))
+            ],
+          ),
+          floatingActionButton: Container(
+            height: (40 / 774) * SizeConfig.screenHeight,
+            child: FloatingActionButton(
+              
+              child: Icon(Icons.settings, size:  (30 / 774) * SizeConfig.screenHeight,),
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertBox();
+                    });
+    
+                setState(() {});
+              },
+            ),
+          ),
+          body: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return SecondMenu();
+                        })),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Image.asset(
+                                  'assets/crops.png',
+                                  height: SizeConfig.screenHeight * 0.2,
+                                ),
+                              ),
+                              Text(AppLocalizations.of(context).startgrowing,
+                                style: textStyle,
+                          )
                         ],
                       ),
                     ),
@@ -103,7 +114,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 height: (30/ 774) * SizeConfig.screenHeight,
                               ),
                               Text(
-                                  AppLocalizations.of(context).viewFertilizaer),
+                                  AppLocalizations.of(context).viewFertilizaer, style: textStyle,),
                             ],
                           ),
                         ),
@@ -138,7 +149,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                   SizedBox(
                                     height: (30/ 774) * SizeConfig.screenHeight,
                                   ),
-                                  Text(AppLocalizations.of(context).contactUs),
+                                  Text(AppLocalizations.of(context).contactUs, style: textStyle,),
                                 ])),
                       )
                     ],

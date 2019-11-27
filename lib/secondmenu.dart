@@ -126,7 +126,7 @@ class _SecondMenuState extends State<SecondMenu> {
                         },
                   color: Colors.green,
                   shape: RoundedRectangleBorder(borderRadius: radius),
-                  child: Text("Start Growing",
+                  child: Text(AppLocalizations.of(context).startgrowing,
                       style: TextStyle(color: Colors.black)),
                 ))
           ],

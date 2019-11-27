@@ -75,11 +75,11 @@ class _ConcentrationScreenState extends State<ConcentrationScreen> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        hintText: "Volume of Water (m3)"),
+                        hintText: AppLocalizations.of(context).volumeWater),
                   ),
                 ),
                 SizedBox(height: (20/774 ) * SizeConfig.screenHeight,),
-                Text("The volume of plain water to be used with concentrated solution (m3)", style: TextStyle(fontFamily: "OpenSans", fontSize: 20), textAlign: TextAlign.start,),
+                Text(AppLocalizations.of(context).volumeNote, style: TextStyle(fontFamily: "OpenSans", fontSize: 20), textAlign: TextAlign.start,),
               ],
             ),
           ),

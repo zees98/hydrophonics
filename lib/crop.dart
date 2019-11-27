@@ -19,7 +19,7 @@ class _CropScreenState extends State<CropScreen> {
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.pop(context)),
-        title: Text(AppLocalizations.of(context).selectACrop),
+        title: Text(AppLocalizations.of(context).chooseCrop),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -109,11 +109,10 @@ class Translations {
       'Calcium': AppLocalizations.of(context).calcium,
       'Magnesium': AppLocalizations.of(context).magnesium,
       'Sulphur': AppLocalizations.of(context).sulphur,
-      'Ammonium' : AppLocalizations.of(context).ammonium,
-      'Nitrate' : AppLocalizations.of(context).nitrate,
-      'Sulphate' : AppLocalizations.of(context).sulphate,
-      'Phosphate' : AppLocalizations.of(context).phosphate
-      
+      'Ammonium': AppLocalizations.of(context).ammonium,
+      'Nitrate': AppLocalizations.of(context).nitrate,
+      'Sulphate': AppLocalizations.of(context).sulphate,
+      'Phosphate': AppLocalizations.of(context).phosphate
     };
   }
 
@@ -140,13 +139,54 @@ class Translations {
       "Fe EDTA 13%": AppLocalizations.of(context).feEDTA,
       "Potassium Sulphate (0-0-50)": AppLocalizations.of(context).potSulphate,
       "Magnesium Sulphate": AppLocalizations.of(context).magSulphate,
-      "Mono Potassium Phosphate (0-52-34)": AppLocalizations.of(context).monoPotPhosphate,
+      "Mono Potassium Phosphate (0-52-34)":
+          AppLocalizations.of(context).monoPotPhosphate,
       "Ammonium Sulphate (21-0-0)": AppLocalizations.of(context).ammoSulphate,
       "Mn EDTA 13%": AppLocalizations.of(context).mnEDTA,
       "Zn EDTA 15%": AppLocalizations.of(context).znEDTA,
       "Cu EDTA 14%": AppLocalizations.of(context).cuEDTA,
       "Boric Acid": AppLocalizations.of(context).boric,
       "Sodium Molybdate": AppLocalizations.of(context).sodMoly,
+    };
+  }
+
+  static Map<String, String> fertilizers(BuildContext context) {
+    return {
+      "Calcium Nitrate": AppLocalizations.of(context).calciumNitrate,
+      "Ammonium Sulphate": AppLocalizations.of(context).ammoniumSulphate,
+      "Magnesium Sulphate (Heptahydrate)":
+          AppLocalizations.of(context).magnesiumSulphateH,
+      "Mono Potassium Phosphate": AppLocalizations.of(context).monopotPhosphate,
+      "Potassium Nitrate": AppLocalizations.of(context).potassiumNitrate,
+      "Potassium Sulphate": AppLocalizations.of(context).potassiumSulphate,
+    };
+  }
+
+  static Map<String, String> fertilizerChem(BuildContext context) {
+    return {
+      "Total Nitrogen (N)": AppLocalizations.of(context).tNitrogen,
+      "Calcium (Ca)": AppLocalizations.of(context).calciumCa,
+      "Sulfur (S)": AppLocalizations.of(context).sulfur,
+      "Magnesium (Mg)": AppLocalizations.of(context).magnesiumMg,
+      "Phosphorus (P)": AppLocalizations.of(context).phosphorusP,
+      "Potassium (K)": AppLocalizations.of(context).potassiumK,
+      "Sulphate (S)": AppLocalizations.of(context).sulphateS,
+       "Formula": AppLocalizations.of(context).formula,
+      "Appearance": AppLocalizations.of(context).appearance,
+      "Solubility (in20 c)": AppLocalizations.of(context).solubility,
+      "Density": AppLocalizations.of(context).density,
+      "Molar Mass": AppLocalizations.of(context).mass,
+    };
+  }
+
+  static Map<String, String> details(BuildContext context) {
+    return {
+      "White Crystal or granular": AppLocalizations.of(context).whitegranular,
+      "White solid hygroscopic granules": AppLocalizations.of(context).hygroscopic,
+      "White crystalline solid": AppLocalizations.of(context).crystalline,
+      "White crystal powder": AppLocalizations.of(context).powder,
+      "White crystalline powder": AppLocalizations.of(context).whitecrystalline,
+      "White fine crystalline powder": AppLocalizations.of(context).finepowder,
     };
   }
 }

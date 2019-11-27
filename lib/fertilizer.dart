@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hydrophonics/crop.dart';
+import 'package:hydrophonics/localization/localizations.dart';
+import 'package:hydrophonics/sizeconfig.dart';
 
 Map<String, String> ammoniumSulphate = {
   'Total Nitrogen (N)': '21%',
@@ -24,7 +27,7 @@ Map<String, String> mgSulphate = {
   'Magnesium (Mg)': '16%',
   'Sulfur (S)': '13%',
   'Formula': 'MgSO4',
-  'Appearance': 'white crystalline solid',
+  'Appearance': 'White crystalline solid',
   'Solubility (in20 c)': '1,130 g/L',
   'Density': '1.512 g/cm3',
   'Molar Mass': '246.47 g/mol'
@@ -50,10 +53,10 @@ Map<String, String> potassiumNitrate = {
 Map<String, String> potassiumSulphate = {
   'Potassium (K)': '50%',
   'Sulphate (S)': '18%',
-  'Formula	': "	K2SO4",
-  'Appearance': 'White fine crystaline powder',
+  'Formula': "	K2SO4",
+  'Appearance': 'White fine crystalline powder',
   'Solubility (in20 c)': '120 g/L ',
-  'Density	': "	2.66 g/cm3",
+  'Density': "	2.66 g/cm3",
   'Molar Mass': '174.26 g/mol',
 };
 
@@ -71,7 +74,7 @@ class _FertilizerState extends State<Fertilizer> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text('Fertilizers'),
+        title: Text(AppLocalizations.of(context).fertilizer),
         centerTitle: true,
         actions: <Widget>[Image.asset("assets/app_logo.png")],
       ),
@@ -83,21 +86,18 @@ class _FertilizerState extends State<Fertilizer> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   children: <Widget>[
-                    ExTile(title: 'Calcium Nitrate', map: calciumNitrate),
                     ExTile(title: 'Ammonium Sulphate', map: ammoniumSulphate),
-                    ExTile(
-                        title: 'Magnesium Sulphate (Heptahydrate)',
-                        map: mgSulphate),
-                    ExTile(
-                        title: 'Mono Potassium Phosphate',
-                        map: monoPotassiumPhosphate),
+                    ExTile(title: 'Calcium Nitrate', map: calciumNitrate),
+                  
+                    ExTile(title: 'Magnesium Sulphate (Heptahydrate)',map: mgSulphate),
+                    ExTile(title: 'Mono Potassium Phosphate',map: monoPotassiumPhosphate),
                     ExTile(title: 'Potassium Nitrate', map: potassiumNitrate),
                     ExTile(title: 'Potassium Sulphate', map: potassiumSulphate)
                   ],
                 )),
             Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: Text("www.BasilGarden.net")),
+                alignment: AlignmentDirectional.bottomCenter,
+                child: Text("www.BasilGarden.net")),
           ],
         ),
       ),
@@ -116,13 +116,14 @@ class ExTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> fertilizer = Translations.fertilizers(context);
     return Card(
       color: Colors.black54,
       child: ExpansionTile(
-        title: Text(title),
+        title: Text(fertilizer[title]),
         children: <Widget>[
           FertilizerTable(
-            title: title,
+            title: fertilizer[title],
             map: map,
           ),
         ],
@@ -143,15 +144,24 @@ class FertilizerTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(fontSize: 32, fontFamily: 'OpenSans'),
-            )
-          ],
+        Flexible(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: (32 / 774) * SizeConfig.screenHeight,
+                    fontFamily: 'OpenSans',
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
+          ),
         ),
         DataTable(
           columnSpacing: 40,
@@ -159,12 +169,16 @@ class FertilizerTable extends StatelessWidget {
             return DataColumn(label: Text(val));
           }).toList(),
           rows: map.keys.toList().map((val) {
+            final alphanumeric = RegExp(r'^[a-zA-Z0-9]+$');
+           Map<String, String > chem = Translations.fertilizerChem(context);
+           Map<String, String > detail = Translations.details(context);
             return DataRow(
                 cells: [
               Image.asset(
                   'assets/fertilizer/${val.trim().replaceAll(" ", "")}.png'),
-              Text(val),
-              Text(map[val])
+              Text(chem[val] == null? val : chem[val]),
+              Text(detail[map[val]] == null ?  map[val]: detail[map[val]] )
+              //Text(alphanumeric.hasMatch(map[val])? map[val] : fertilizer[val])
             ].map((val) {
               return DataCell(val);
             }).toList());
