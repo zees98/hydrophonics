@@ -21,76 +21,54 @@ class _CropScreenState extends State<CropScreen> {
             onPressed: () => Navigator.pop(context)),
         title: Text(AppLocalizations.of(context).chooseCrop),
         centerTitle: true,
+        actions: <Widget>[
+          Tab(icon: Image.asset('assets/app_logo.png'))
+        ],
       ),
       body: SafeArea(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              mainAxisSpacing: 5,
-              crossAxisCount: 2,
-              children: optimalEnv.keys.toList().map<Widget>((val) {
-                return MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context, val);
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Expanded(
-                          flex: 2,
-                          child:
-                              Image.asset('assets/${val.toLowerCase()}.png')),
-                      SizedBox(
-                        height: 20,
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                GridView.count(
+                  mainAxisSpacing: 5,
+                  crossAxisCount: 2,
+                  children: optimalEnv.keys.toList().map<Widget>((val) {
+                    return MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context, val);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Expanded(
+                              flex: 2,
+                              child: Image.asset(
+                                  'assets/${val.toLowerCase()}.png')),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(child: Text(locales[val]))
+                        ],
                       ),
-                      Expanded(child: Text(locales[val]))
-                    ],
-                  ),
-                );
-              }).toList(),
+                    );
+                  }).toList(),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.bottomCenter,
+                    child: Text(
+                  "www.BasilGarden.net",
+                  textAlign: TextAlign.center,
+                ))
+              ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  Future buildShowDialog(BuildContext context, String val) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return SimpleDialog(
-            title: Text("Add Water Analysis?"),
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return WaterAnalysis(
-                        crop: val,
-                      );
-                    })),
-                    child: Text('Yes'),
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ConcentrationScreen();
-                      }));
-                    },
-                    child: Text('No'),
-                  )
-                ],
-              )
-            ],
-          );
-        });
   }
 }
 
@@ -171,7 +149,7 @@ class Translations {
       "Phosphorus (P)": AppLocalizations.of(context).phosphorusP,
       "Potassium (K)": AppLocalizations.of(context).potassiumK,
       "Sulphate (S)": AppLocalizations.of(context).sulphateS,
-       "Formula": AppLocalizations.of(context).formula,
+      "Formula": AppLocalizations.of(context).formula,
       "Appearance": AppLocalizations.of(context).appearance,
       "Solubility (in20 c)": AppLocalizations.of(context).solubility,
       "Density": AppLocalizations.of(context).density,
@@ -182,7 +160,8 @@ class Translations {
   static Map<String, String> details(BuildContext context) {
     return {
       "White Crystal or granular": AppLocalizations.of(context).whitegranular,
-      "White solid hygroscopic granules": AppLocalizations.of(context).hygroscopic,
+      "White solid hygroscopic granules":
+          AppLocalizations.of(context).hygroscopic,
       "White crystalline solid": AppLocalizations.of(context).crystalline,
       "White crystal powder": AppLocalizations.of(context).powder,
       "White crystalline powder": AppLocalizations.of(context).whitecrystalline,

@@ -47,55 +47,66 @@ class _ConcentrationScreenState extends State<ConcentrationScreen> {
         title: Text(AppLocalizations.of(context).concentration),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
+              
               children: <Widget>[
-                Form(
-                  key: fromkey,
-                  child: TextFormField(
-                    validator: (val) {
-                      try {
-                        double value = double.parse(val);
-                        return value <= 0 ? "Please enter a value above 0" : null;
-                      } catch (c) {
-                        return "Please enter a number";
-                      }
-                    },
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    onChanged: (newVal) {
-                      
-                      setState(() {
-                        conn = newVal == null ? 0.0 : double.parse(newVal);
-                      });
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: AppLocalizations.of(context).volumeWater),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Form(
+                        key: fromkey,
+                        child: TextFormField(
+                          validator: (val) {
+                            try {
+                              double value = double.parse(val);
+                              return value <= 0 ? "Please enter a value above 0" : null;
+                            } catch (c) {
+                              return "Please enter a number";
+                            }
+                          },
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          onChanged: (newVal) {
+                            
+                            setState(() {
+                              conn = newVal == null ? 0.0 : double.parse(newVal);
+                            });
+                          },
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              hintText: AppLocalizations.of(context).volumeWater),
+                        ),
+                      ),
+                      SizedBox(height: (20/774 ) * SizeConfig.screenHeight,),
+                      Text(AppLocalizations.of(context).volumeNote, style: TextStyle(fontFamily: "OpenSans", fontSize: 20), textAlign: TextAlign.start,),
+                    ],
                   ),
                 ),
-                SizedBox(height: (20/774 ) * SizeConfig.screenHeight,),
-                Text(AppLocalizations.of(context).volumeNote, style: TextStyle(fontFamily: "OpenSans", fontSize: 20), textAlign: TextAlign.start,),
+                FlatButton(
+                  onPressed: () {
+                    if(fromkey.currentState.validate())
+                      Navigator.pop(context, conn);
+                  },
+                  child: Text(
+                    "Proceed",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  shape:
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                  color: Colors.green,
+                )
               ],
             ),
           ),
-          FlatButton(
-            onPressed: () {
-              if(fromkey.currentState.validate())
-                Navigator.pop(context, conn);
-            },
-            child: Text(
-              "Proceed",
-              style: TextStyle(color: Colors.black),
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            color: Colors.green,
-          )
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: Text("www.BasilGarden.net"))
         ],
       ),
     );

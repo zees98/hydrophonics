@@ -91,43 +91,49 @@ class _SecondMenuState extends State<SecondMenu> {
             ),
             Align(
                 alignment: AlignmentDirectional.bottomCenter,
-                child: FlatButton(
-                  onPressed: (conn != null && crop != null)
-                      ? () => Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ResultScreen(
-                              crop: crop,
-                              waterAnalysis: wA,
-                              concentration: conn == null ? 0.0 : conn,
-                            );
-                          }))
-                      : () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text("Missing data"),
-                                  content: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                          "Crop (Required)\n\nWater Analysis (Optional) \n\nConcentration Factor (Required)"),
-                                    ),
-                                  actions: <Widget>[
-                                    MaterialButton(
-                                      shape: RoundedRectangleBorder(borderRadius: radius),
-                                      color: Colors.black54,
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text("OK"),
-                                    )
-                                  ],
-                                    
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: (conn != null && crop != null)
+                          ? () => Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ResultScreen(
+                                  crop: crop,
+                                  waterAnalysis: wA,
+                                  concentration: conn == null ? 0.0 : conn,
                                 );
-                              });
-                        },
-                  color: Colors.green,
-                  shape: RoundedRectangleBorder(borderRadius: radius),
-                  child: Text(AppLocalizations.of(context).startgrowing,
-                      style: TextStyle(color: Colors.black)),
+                              }))
+                          : () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Missing data"),
+                                      content: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              "Crop (Required)\n\nWater Analysis (Optional) \n\nConcentration Factor (Required)"),
+                                        ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          shape: RoundedRectangleBorder(borderRadius: radius),
+                                          color: Colors.black54,
+                                          onPressed: () => Navigator.pop(context),
+                                          child: Text("OK"),
+                                        )
+                                      ],
+                                        
+                                    );
+                                  });
+                            },
+                      color: Colors.green,
+                      shape: RoundedRectangleBorder(borderRadius: radius),
+                      child: Text(AppLocalizations.of(context).startgrowing,
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                    Text("www.BasilGarden.net")
+                  ],
                 ))
           ],
         ),

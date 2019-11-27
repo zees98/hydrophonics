@@ -82,7 +82,8 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
               ),
-            )
+            ),
+            Text("www.BasilGarden.net", textAlign: TextAlign.center,)
           ],
         ),
       ),

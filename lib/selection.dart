@@ -160,7 +160,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
           ),
           Align(
             alignment: AlignmentDirectional.bottomCenter,
-            child: Text('www.basilGarden.net'))
+            child: Text('www.BasilGarden.net'))
         ],
       ),
     );
