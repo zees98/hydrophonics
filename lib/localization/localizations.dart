@@ -360,9 +360,7 @@ class AppLocalizations {
         name: 'query');
   }
   String get disclaimer {
-    return Intl.message(
-        "\n\nDisclaimer: \n\nThe information mentioned in this application represent the best of knowledge of the inventor, it may be used for free. However, the inventor will not take responsibility for decisions or actions taken by the user based solely on the information provided in this app.User must be aware of the basic safety procedures while using fertilizers and must take all necessary precautions to guarantee personal safety during mixing and using any kind of chemicals. We hold no liability of any incident resulting a misuse of this application. Amateur and beginning growers are strongly advised to obtain a consultation and professional supervision before launching a Hydroponic project. \n\nAll Rights reserved for BasilGarden.net\n\n",
-        name: 'disclaimer');
+    return Intl.message("\n\nDisclaimer: \n\nThe information mentioned in this application represent the best of knowledge of the inventor, it may be used for free. However, the inventor will not take responsibility for decisions or actions taken by the user based solely on the information provided in this app.User must be aware of the basic safety procedures while using fertilizers and must take all necessary precautions to guarantee personal safety during mixing and using any kind of chemicals. We hold no liability of any incident resulting a misuse of this application. Amateur and beginning growers are strongly advised to obtain a consultation and professional supervision before launching a Hydroponic project. \n\nAll Rights reserved for BasilGarden.net\n\n", name: 'disclaimer');
   }
   String get contactus1 {
     return Intl.message(

@@ -30,12 +30,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "concentration": MessageLookupByLibrary.simpleMessage("عامل التركيز"),
         "missing": MessageLookupByLibrary.simpleMessage("بيانات مفقودة"),
         "tomato": MessageLookupByLibrary.simpleMessage("طماطم"),
-        "lettuce": MessageLookupByLibrary.simpleMessage("الخس"),
+        "lettuce": MessageLookupByLibrary.simpleMessage("خس"),
         "basil": MessageLookupByLibrary.simpleMessage("ريحان"),
         "pepper": MessageLookupByLibrary.simpleMessage("فلفل"),
         "strawberry": MessageLookupByLibrary.simpleMessage("الفراولة"),
         "roses": MessageLookupByLibrary.simpleMessage("ورود"),
-        "melon": MessageLookupByLibrary.simpleMessage("شمام"),
+        "melon": MessageLookupByLibrary.simpleMessage("بطيخ"),
         "spinach": MessageLookupByLibrary.simpleMessage("سبانخ"),
         "herbs": MessageLookupByLibrary.simpleMessage("أعشاب"),
         "cucumber": MessageLookupByLibrary.simpleMessage("خيار"),
@@ -45,7 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "temperature":
             MessageLookupByLibrary.simpleMessage("درجة الحرارة (مئوية)"),
         "ph": MessageLookupByLibrary.simpleMessage("رقم الحموضة"),
-        "ec": MessageLookupByLibrary.simpleMessage("الناقلية الكهربائية"),
+        "ec": MessageLookupByLibrary.simpleMessage("الناقلية الكهربائية\n(ميلي سيمنز/سم)\n"),
         "ppm": MessageLookupByLibrary.simpleMessage("التركيز الكلي (PPM)"),
         "suggested": MessageLookupByLibrary.simpleMessage(
             "نسبة العناصر المقترحة للمحلول المغذي (PPM)"),
@@ -137,7 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "contactUs1" : MessageLookupByLibrary.simpleMessage("هذا التطبيق هو خلاصة 7 سنوات من الخبرة في مجال الزراعة و الأسمدة بعملي كمهندس زراعي مع أكبر منتج للأسمدة في منطقة الخليج العربي. يتم تقديم هذا التطبيق لمساعدة العاملين في مجال الزراعة المائية الهواة و المحترفين على حد سواء الذين يعانون من صعوبات في إدارة المستلزمات الغذائية لمحاصيلهم, الأمر الذي يعد حرجاً جداً في هذا النوع من الزراعة. ليس من السهل أبداً على المزارع أن يصمم برنامجاً تسميدياً يلبي جميع احتياجات النبات و يحافظ على التوازن الكيماوي في السائل المغذي في نفس الوقت, هنا تأتي أهمية هذا التطبيق الذي يجمع بين الأسلوب الهولندي و الأميريكي في وضع خطة سمادية متوازنة كيميائياً من حيث الشوارد و تشبع متطلبات النبات في كامل مراحل نموه و ذلك بضمان أقل تكلفة. هذا التطبيق يتضمن معلومات عامة عن الظروف البيئية, الفيزيائية, و الكيماوية المثالية للنمو, و التي من الممكن استخدامها من قبل المزارعين المبتدئين و المحترفين.محمد عمران(مهندس زراعي("),
         "moreInfo" : MessageLookupByLibrary.simpleMessage("\n\nلمزيد من المعلومات, يرجى زيارة الموقع الإلكتروني:\n\n"),
          "query" : MessageLookupByLibrary.simpleMessage("كما يمكن التواصل معنا من خلال البريد الالكتروني لأية ملاحظات أو في حال الحاجة لمساعدة إضافية:"),
-        "disclaimer" : MessageLookupByLibrary.simpleMessage("\n\nإخلاء مسؤولية:\n\nThe information mentioned in this application represent the best of knowledge of the inventor, it may be used for free. However, the inventor will not take responsibility for decisions or actions taken by the user based solely on the information provided in this app.User must be aware of the basic safety procedures while using fertilizers and must take all necessary precautions to guarantee personal safety during mixing and using any kind of chemicals. We hold no liability of any incident resulting a misuse of this application. Amateur and beginning growers are strongly advised to obtain a consultation and professional supervision before launching a Hydroponic project. \n\nAll Rights reserved for BasilGarden.net\n\n"),
+        "disclaimer" : MessageLookupByLibrary.simpleMessage("\n\nإخلاء مسؤولية:\n\nإن المعلومات الموجودة في هذا التطبيق تمثل الخبرات الخاصة بمخترع التطبيق و يمكن استخدامها بدون مقابل. ومع ذلك فإن مخترع التطبيق ليس مسؤولاً عن أية قرار أو إجراء يتخذ من قبل المستخدم بناءاً على المعلومات المقدمة هنا. يجب على المستخدم أخذ جميع الاحتياطات الواجبة عند التعامل مع الأسمدة و أية مواد كيماوية أخرى, و إن هذا التطبيق ليس مسؤولاً عن أية حوادث ناجمة عن الاستخدام الخاطىء لهذا التطبيق.ننصح المزارعين الهواة و المبتدئين الحصول على إشراف فني و دعم تقني استشاري من قبل جهات محترفة قبل البدء بأية مشروع زراعة مائية.جميع الحقوق محفوظة لصالح BasilGarden.net\n\n"),
         
     
         //حجم الماء

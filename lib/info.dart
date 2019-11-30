@@ -106,152 +106,143 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       ),
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                          child: Text(
-                       Translations.locale(context)[crop],
-                        style: TextStyle(fontSize: 50, fontFamily: 'OpenSans'),
-                        textAlign: TextAlign.start,
-                      )),
-                      Expanded(
-                          child: Image.asset(
-                              'assets/${widget.crop.toLowerCase()}.png'))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: DataTable(
-                              columnSpacing: SizeConfig.screenWidth * 0.1,
-                              horizontalMargin: 1,
-                              columns: columns.map<DataColumn>((val) {
-                                int imgIndex = columns.indexOf(val);
-                                return DataColumn(
-                                    label: Row(
-                                  mainAxisSize: MainAxisSize.min,
+                      child: Text(
+                   Translations.locale(context)[crop],
+                    style: TextStyle(fontSize: 50, fontFamily: 'OpenSans'),
+                    textAlign: TextAlign.start,
+                  )),
+                  Expanded(
+                      child: Image.asset(
+                          'assets/${widget.crop.toLowerCase()}.png'))
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          columnSpacing: SizeConfig.screenWidth * 0.1,
+                          horizontalMargin: 1,
+                          columns: columns.map<DataColumn>((val) {
+                            int imgIndex = columns.indexOf(val);
+                            return DataColumn(
+                                label: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(chemtrans[val], textAlign: TextAlign.center,),
+                                Image.asset(
+                                  'assets/${icons[imgIndex]}',
+                                  height: 25,
+                                )
+                              ],
+                            ));
+                          }).toList(),
+                          rows: [
+                            DataRow(
+                                cells: [
+                              optimalEnv[crop][0],
+                              optimalEnv[crop][1],
+                              optimalEnv[crop][2]
+                            ].map((val) {
+                              return DataCell(Center(child: Text(val, textAlign: TextAlign.center,)));
+                            }).toList())
+                          ],
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                            columnSpacing: 
+                                SizeConfig.screenWidth * 0.22,
+                            horizontalMargin: 1,
+                            columns: coulmn1.map((val) {
+                              return DataColumn(
+                                  label: Center(
+                                child: Row(
                                   children: <Widget>[
-                                    Text(chemtrans[val], textAlign: TextAlign.center,),
+                                    Text(chemtrans[val]),
                                     Image.asset(
-                                      'assets/${icons[imgIndex]}',
+                                      'assets/${images1[coulmn1.indexOf(val)]}',
                                       height: 25,
                                     )
                                   ],
-                                ));
-                              }).toList(),
-                              rows: [
-                                DataRow(
-                                    cells: [
-                                  optimalEnv[crop][0],
-                                  optimalEnv[crop][1],
-                                  optimalEnv[crop][2]
-                                ].map((val) {
-                                  return DataCell(Center(child: Text(val, textAlign: TextAlign.center,)));
-                                }).toList())
-                              ],
-                            ),
-                          ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: DataTable(
-                                columnSpacing: 
-                                    SizeConfig.screenWidth * 0.22,
-                                horizontalMargin: 1,
-                                columns: coulmn1.map((val) {
-                                  return DataColumn(
-                                      label: Center(
-                                    child: Row(
-                                      children: <Widget>[
-                                        Text(chemtrans[val]),
-                                        Image.asset(
-                                          'assets/${images1[coulmn1.indexOf(val)]}',
-                                          height: 25,
-                                        )
-                                      ],
-                                    ),
-                                  ));
+                                ),
+                              ));
+                            }).toList(),
+                            rows: [
+                              DataRow(
+                                cells: optimalChem[crop].toList().map((val) {
+                                  return DataCell(Text(val));
                                 }).toList(),
-                                rows: [
-                                  DataRow(
-                                    cells: optimalChem[crop].toList().map((val) {
-                                      return DataCell(Text(val));
-                                    }).toList(),
-                                  )
-                                ]),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: Text(
-                              AppLocalizations.of(context).suggested,
-                              style: textStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          DataTable(
-                              headingRowHeight: 0,
-                              dataRowHeight: 70,
-                              columnSpacing: MediaQuery.of(context).size.width / 20,
-                              horizontalMargin: 20,
-                              columns: [1, 2, 3].map((val) {
-                                return DataColumn(label: Container());
-                              }).toList(),
-                              rows: suggestedNutrients[crop].map((val) {
-                                List<double> list = suggestedNutrients[crop];
-                                return DataRow(cells: [
-                                  DataCell(Image.asset(
-                                      'assets/${chemLabels[list.indexOf(val)]}')),
-                                  DataCell(Text(chemtrans[column2[list.indexOf(val)]])),
-                                  DataCell(Text(val.toStringAsFixed(0))),
-                                ]);
-                              }).toList()),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              AppLocalizations.of(context).tankA,
-                              textAlign: TextAlign.center,
-                              style: textStyle.copyWith(fontSize: 24),
-                            ),
-                          ),
-                          TankTable(
-                            tankB: tankA,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              AppLocalizations.of(context).tankB,
-                              textAlign: TextAlign.center,
-                              style: textStyle.copyWith(fontSize: 24),
-                            ),
-                          ),
-                          TankTable(tankB: tankB)
-                        ],
+                              )
+                            ]),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: Text('www.BasilGarden.net'),
-            )
-          ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: Text(
+                          AppLocalizations.of(context).suggested,
+                          style: textStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      DataTable(
+                          headingRowHeight: 0,
+                          dataRowHeight: 70,
+                          columnSpacing: MediaQuery.of(context).size.width / 20,
+                          horizontalMargin: 20,
+                          columns: [1, 2, 3].map((val) {
+                            return DataColumn(label: Container());
+                          }).toList(),
+                          rows: suggestedNutrients[crop].map((val) {
+                            List<double> list = suggestedNutrients[crop];
+                            return DataRow(cells: [
+                              DataCell(Image.asset(
+                                  'assets/${chemLabels[list.indexOf(val)]}')),
+                              DataCell(Text(chemtrans[column2[list.indexOf(val)]])),
+                              DataCell(Text(val.toStringAsFixed(0))),
+                            ]);
+                          }).toList()),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          AppLocalizations.of(context).tankA,
+                          textAlign: TextAlign.center,
+                          style: textStyle.copyWith(fontSize: 24),
+                        ),
+                      ),
+                      TankTable(
+                        tankB: tankA,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          AppLocalizations.of(context).tankB,
+                          textAlign: TextAlign.center,
+                          style: textStyle.copyWith(fontSize: 24),
+                        ),
+                      ),
+                      TankTable(tankB: tankB)
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
