@@ -134,7 +134,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "volumeNote": MessageLookupByLibrary.simpleMessage(
             "حجم الماء العادي المراد استخدامه مع محلول مركّز (m3)"),
          "volumeWater" : MessageLookupByLibrary.simpleMessage(" حجم الماء (m3)"),
+          "contactUs1" : MessageLookupByLibrary.simpleMessage("هذا التطبيق هو خلاصة 7 سنوات من الخبرة في مجال الزراعة و الأسمدة بعملي كمهندس زراعي مع أكبر منتج للأسمدة في منطقة الخليج العربي. يتم تقديم هذا التطبيق لمساعدة العاملين في مجال الزراعة المائية الهواة و المحترفين على حد سواء الذين يعانون من صعوبات في إدارة المستلزمات الغذائية لمحاصيلهم, الأمر الذي يعد حرجاً جداً في هذا النوع من الزراعة. ليس من السهل أبداً على المزارع أن يصمم برنامجاً تسميدياً يلبي جميع احتياجات النبات و يحافظ على التوازن الكيماوي في السائل المغذي في نفس الوقت, هنا تأتي أهمية هذا التطبيق الذي يجمع بين الأسلوب الهولندي و الأميريكي في وضع خطة سمادية متوازنة كيميائياً من حيث الشوارد و تشبع متطلبات النبات في كامل مراحل نموه و ذلك بضمان أقل تكلفة. هذا التطبيق يتضمن معلومات عامة عن الظروف البيئية, الفيزيائية, و الكيماوية المثالية للنمو, و التي من الممكن استخدامها من قبل المزارعين المبتدئين و المحترفين.محمد عمران(مهندس زراعي("),
+        "moreInfo" : MessageLookupByLibrary.simpleMessage("\n\nلمزيد من المعلومات, يرجى زيارة الموقع الإلكتروني:\n\n"),
+         "query" : MessageLookupByLibrary.simpleMessage("كما يمكن التواصل معنا من خلال البريد الالكتروني لأية ملاحظات أو في حال الحاجة لمساعدة إضافية:"),
+        "disclaimer" : MessageLookupByLibrary.simpleMessage("\n\nإخلاء مسؤولية:\n\nThe information mentioned in this application represent the best of knowledge of the inventor, it may be used for free. However, the inventor will not take responsibility for decisions or actions taken by the user based solely on the information provided in this app.User must be aware of the basic safety procedures while using fertilizers and must take all necessary precautions to guarantee personal safety during mixing and using any kind of chemicals. We hold no liability of any incident resulting a misuse of this application. Amateur and beginning growers are strongly advised to obtain a consultation and professional supervision before launching a Hydroponic project. \n\nAll Rights reserved for BasilGarden.net\n\n"),
         
+    
         //حجم الماء
       };
 }

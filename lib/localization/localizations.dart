@@ -349,7 +349,30 @@ class AppLocalizations {
         "Volume of Water (m3)",
         name: 'volumeWater');
   }
+   String get moreInfo {
+    return Intl.message(
+        "\n\nFor more information and topics, you may visit the official website:\n\n",
+        name: 'moreInfo');
+  }
+   String get query {
+    return Intl.message(
+        "\n\nIf you have any comment or need further assistance, you may contact the application creator through: \n\n",
+        name: 'query');
+  }
+  String get disclaimer {
+    return Intl.message(
+        "\n\nDisclaimer: \n\nThe information mentioned in this application represent the best of knowledge of the inventor, it may be used for free. However, the inventor will not take responsibility for decisions or actions taken by the user based solely on the information provided in this app.User must be aware of the basic safety procedures while using fertilizers and must take all necessary precautions to guarantee personal safety during mixing and using any kind of chemicals. We hold no liability of any incident resulting a misuse of this application. Amateur and beginning growers are strongly advised to obtain a consultation and professional supervision before launching a Hydroponic project. \n\nAll Rights reserved for BasilGarden.net\n\n",
+        name: 'disclaimer');
+  }
+  String get contactus1 {
+    return Intl.message(
+       """
+This application is an extract of 7 years of experience as a senior Agronomist working with the biggest fertilizer manufacturer in GCC, it comes to help the amateur and professional Hydroponic growers who have difficulties managing their crops’ nutritional demands, which is very critical in Hydroponic farming. It is not easy for a grower to design an efficient fertilizing program which can fulfill all the crops needs and keep the chemical balance in the same time, so this application links the Dutch hydroponic method with the American method to give an adequate balanced, yet simple fertilizer program to fulfill all the nutrition requirements crops maintaining the chemical balance of solution, and with the cheapest cost. The application provides some information about the optimal environmental, physical, and chemical conditions to grow the 10 crops, all these recommendations can be used in a commercial grade and for hobby growers. \n\nMohammad Emran \n(Senior Agronomist).""" ,
+        name: 'contactUs1');
+  }
 }
+
+
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();

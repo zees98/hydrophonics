@@ -72,7 +72,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                               Padding(
                                 padding: const EdgeInsets.all(24.0),
                                 child: Image.asset(
-                                  'assets/crops.png',
+                                  'assets/startgrowing.png',
                                   height: SizeConfig.screenHeight * 0.2,
                                 ),
                               ),
