@@ -18,18 +18,22 @@ class ContactUS extends StatelessWidget {
                               child: Column(
                                 
                       children: <Widget>[
-                        Padding(
-                          padding:  EdgeInsets.all(20),
-                          child: Image.asset('assets/mohammad.png'),
-                        ),
-                        SizedBox(height: 40,),
+                         Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text(AppLocalizations.of(context).contactus1, textAlign: TextAlign.justify, style: textStyle, ),
+                         ),
+                              
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               
-                              Text(AppLocalizations.of(context).contactus1, textAlign: TextAlign.justify, style: textStyle, ),
+                             Padding(
+                          padding:  EdgeInsets.all(60),
+                          child: Image.asset('assets/mohammad.png'),
+                        ),
+                        SizedBox(height: 40,),
                       Text(AppLocalizations.of(context).moreInfo),
                       GestureDetector(
                         onTap: (){
