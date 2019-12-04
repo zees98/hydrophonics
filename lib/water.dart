@@ -14,6 +14,8 @@ class WaterAnalysis extends StatefulWidget {
 }
 
 class _WaterAnalysisState extends State<WaterAnalysis> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Map<String, double> wateranalysis = {
     'Nitrate': 0.0,
     'Ammonium': 0.0,
@@ -43,30 +45,45 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
       body: SafeArea(
         child: ListView(
           children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: wateranalysis.keys.map<Widget>((val) {
-                //print('$val: ${}');
-                return Padding(
-                  padding:
-                      const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
-                  child: TextField(
-                    expands: false,
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: Translations.chemTranslation(context)[val.trim()]),
-                    onChanged: (newValue) {
-                      setState(() {
-                        
-                        wateranalysis[val] = double.parse(newValue);
-                      });
-                    },
-                  ),
-                );
-              }).toList(),
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: wateranalysis.keys.map<Widget>((val) {
+                  //print('$val: ${}');
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
+                    child: TextFormField(
+                      validator: (text) {
+                        if (text.isNotEmpty) {
+                          double value = double.parse(text);
+                          return value <= 0
+                              ? "Please enter a value above 0"
+                              : value > 300
+                                  ? "Please enter a value Below 300"
+                                  : null;
+                        } else {
+                          return null;
+                        }
+                      },
+                      expands: false,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          hintText: Translations.chemTranslation(
+                              context)[val.trim()]),
+                      onChanged: (newValue) {
+                        setState(() {
+                          wateranalysis[val] = double.parse(newValue);
+                        });
+                      },
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
             SizedBox(
               height: 20,
@@ -75,7 +92,8 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
               padding: EdgeInsets.symmetric(horizontal: 60),
               child: FlatButton(
                 onPressed: () {
-                  Navigator.pop(context, wateranalysis);
+                  if (_formKey.currentState.validate())
+                    Navigator.pop(context, wateranalysis);
                 },
                 child: Text('Proceed'),
                 color: Colors.grey,
@@ -83,7 +101,10 @@ class _WaterAnalysisState extends State<WaterAnalysis> {
                     borderRadius: BorderRadius.circular(20)),
               ),
             ),
-            Text("www.BasilGarden.net", textAlign: TextAlign.center,)
+            Text(
+              "www.BasilGarden.net",
+              textAlign: TextAlign.center,
+            )
           ],
         ),
       ),
